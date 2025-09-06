@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WMA — Contact | kjsinfo.online</title>
+<meta name="theme-color" content="#0b0f17">
+<style>
+/* same style as above for consistency */
+:root{--bg:#06090f;--txt:#e6f1ff;--muted:#93a4bf;--neon:#55ffcc;--neon-2:#66a6ff;--accent:#12f7d6;--danger:#ff477e;--ok:#74f57d;--card:#0a0f18cc;--border:#192235;--shadow:0 10px 25px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);--radius:18px}
+body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--txt);}
+.wrap{max-width:1100px;margin:0 auto;padding:24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;position:sticky;top:0;backdrop-filter:blur(8px);background:linear-gradient(180deg, rgba(8,13,20,.75), rgba(8,13,20,0));z-index:10}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--txt)}
+.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:conic-gradient(from 210deg,var(--neon),var(--neon-2),var(--danger),var(--neon));position:relative;overflow:hidden}
+.logo span{position:relative;z-index:1;font-weight:800}
+nav a{color:var(--muted);text-decoration:none;margin-left:12px;padding:6px 10px;border-radius:999px;transition:.2s}
+nav a:hover{color:var(--txt);background:#0c1320}
+h2{margin-bottom:16px;font-size:28px;text-transform:uppercase;opacity:.9}
+.card{background:var(--card);padding:18px;border-radius:var(--radius);margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 0 0 2px var(--neon),var(--shadow)}
+.pill{padding:6px 10px;background:#0c1320;border-radius:999px;border:1px solid #1b2840;color:#b9c7e6;font-family:monospace}
+.btn{padding:8px 12px;margin-top:8px;border-radius:12px;background:var(--bg-2);color:var(--txt);border:1px solid var(--border);cursor:pointer}
+footer{margin:40px 0 12px;text-align:center;color:#8fa0bf;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="brand" href="index.html"><div class="logo"><span>∿</span></div>WMA</a>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="skills.html">Skills</a>
+<a href="work.html">Work</a>
+</nav>
+</header>
+
+<h2>Contact</h2>
+
+<div class="card" aria-label="contact card">
+  <h3>Let's Build Securely</h3>
+  <p>Ping me for audits, backend projects, automation, or game hosting.</p>
+  
+  <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
+    <input 
+      class="pill mono" 
+      type="text" 
+      value="kjdiscord69@gmail.com" 
+      id="email" 
+      readonly 
+      aria-label="email address"
+      style="flex:1; min-width:180px;"
+    >
+    <button class="btn" onclick="copyEmail()">Copy Email</button>
+  </div>
+  
+  <div class="terminal" style="margin-top:16px; background:#03070f; border:1px solid #1a2438; border-radius:18px; padding:16px; box-shadow:0 10px 25px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);">
+    <div class="bar" style="display:flex; gap:8px; margin-bottom:10px;">
+      <span class="dot r" style="background:#ff5f56; width:10px; height:10px; border-radius:50%;"></span>
+      <span class="dot y" style="background:#ffbd2e; width:10px; height:10px; border-radius:50%;"></span>
+      <span class="dot g" style="background:#27c93f; width:10px; height:10px; border-radius:50%;"></span>
+    </div>
+    <pre class="mono" style="margin:0; white-space:pre-wrap; color:#74f57d;">
+$ echo "Email ready to copy"
+✅ Copied to clipboard!
+    </pre>
+  </div>
+</div>
+
+<script>
+  function copyEmail() {
+    const emailInput = document.getElementById('email');
+    emailInput.select();
+    emailInput.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+
+    // Update terminal text dynamically
+    const terminalPre = emailInput.closest('.card').querySelector('.terminal pre');
+    terminalPre.textContent = '$ echo "Email ready to copy"\n✅ Copied to clipboard!';
+
+    // Button feedback
+    const btn = emailInput.closest('.card').querySelector('button');
+    const oldText = btn.textContent;
+    btn.textContent = 'Copied ✔';
+    setTimeout(() => btn.textContent = oldText, 1200);
+  }
+</script>
+
+
+<footer>© <span id="year"></span> WMA — kjsinfo.online</footer>
+</div>
+
+<script>
+function copyEmail(){var t=document.getElementById("email");t.select();document.execCommand("copy");alert("Email copied!")}
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
