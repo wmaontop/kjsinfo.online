@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WMA — Skills | kjsinfo.online</title>
+<meta name="theme-color" content="#0b0f17">
+<style>
+:root{
+  --bg:#06090f; --bg-2:#0b101a; --txt:#e6f1ff; --muted:#93a4bf;
+  --neon:#55ffcc; --neon-2:#66a6ff; --accent:#12f7d6; --danger:#ff477e;
+  --ok:#74f57d; --card:#0a0f18cc; --border:#192235;
+  --shadow:0 10px 25px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);
+  --radius:18px;
+}
+body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--txt);}
+.wrap{max-width:1100px;margin:0 auto;padding:24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;position:sticky;top:0;backdrop-filter:blur(8px);background:linear-gradient(180deg, rgba(8,13,20,.75), rgba(8,13,20,0));z-index:10}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--txt)}
+.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:conic-gradient(from 210deg,var(--neon),var(--neon-2),var(--danger),var(--neon));position:relative;overflow:hidden}
+.logo span{position:relative;z-index:1;font-weight:800}
+nav a{color:var(--muted);text-decoration:none;margin-left:12px;padding:6px 10px;border-radius:999px;transition:.2s}
+nav a:hover{color:var(--txt);background:#0c1320}
+h2{margin-bottom:16px;font-size:28px;text-transform:uppercase;opacity:.9}
+.card{background:var(--card);padding:18px;border-radius:var(--radius);margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 0 0 2px var(--neon),var(--shadow)}
+.tag{display:inline-block;margin:4px 4px 0 0;padding:6px 10px;border-radius:10px;border:1px dashed #26324e;background:#0c1320;color:#9bb1da;font-size:12px}
+.terminal{background:#03070f;border:1px solid #1a2438;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-top:12px}
+.bar{display:flex;gap:8px;margin-bottom:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:#2a3550}
+.dot.r{background:#ff5f56}.dot.y{background:#ffbd2e}.dot.g{background:#27c93f}
+footer{margin:40px 0 12px;text-align:center;color:#8fa0bf;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="brand" href="index.html"><div class="logo"><span>∿</span></div>WMA</a>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="work.html">Work</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<h2>Skills</h2>
+
+<div class="card">
+<h3>Programming Languages</h3>
+<div>
+<span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">C</span>
+<span class="tag">C++</span><span class="tag">C#</span><span class="tag">JavaScript</span>
+<span class="tag">TypeScript</span><span class="tag">Python</span>
+</div>
+</div>
+
+<div class="card">
+<h3>Cybersecurity & Security Ops</h3>
+<div>
+<span class="tag">Recon/OSINT</span><span class="tag">Vuln Scanning</span>
+<span class="tag">Secure Coding</span><span class="tag">RBAC/ABAC</span>
+<span class="tag">Secrets Mgmt</span><span class="tag">TLS/PKI</span>
+<span class="tag">WAF/CDN</span><span class="tag">DDoS Strategy</span>
+</div>
+<div class="terminal">
+<div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+<pre class="mono" style="margin:0">$ ./audit.sh
+✅ Security checks complete</pre>
+</div>
+</div>
+
+<div class="card">
+<h3>Tooling & Ops</h3>
+<div>
+<span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Linux</span><span class="tag">Git</span>
+<span class="tag">SQL/NoSQL</span><span class="tag">Redis</span><span class="tag">NGINX</span><span class="tag">Pterodactyl</span>
+</div>
+</div>
+
+<footer>© <span id="year"></span> WMA — kjsinfo.online</footer>
+</div>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
