@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #000;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.rich-font {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.5),
+    0 0 20px rgba(255, 215, 0, 0.3),
+    0 0 30px rgba(255, 215, 0, 0.2);
+}
+
+video {
+  object-fit: cover;
+  background: #000;
+}
+
+* {
+  transition: all 0.3s ease;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .fixed {
+    position: absolute;
+  }
+}
