@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KJS | Discord Status</title>
+  <title>KJS | Discord</title>
   <style>
     :root {
       --bg: #06090f;
@@ -19,51 +19,58 @@
       color: var(--fg);
       display: flex;
       flex-direction: column;
-      align-items: center;
       min-height: 100vh;
     }
     header {
       width: 100%;
-      padding: 16px 32px;
+      padding: 18px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    header a {
+    header .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--neon);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    nav a {
       text-decoration: none;
       color: var(--fg);
-      margin-left: 18px;
+      margin-left: 20px;
+      font-weight: 500;
       transition: 0.2s;
     }
-    header a:hover {
+    nav a:hover {
       color: var(--neon);
     }
     .wrap {
-      max-width: 900px;
-      padding: 40px 20px;
       flex: 1;
-      width: 100%;
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
     h2 {
       font-size: 2rem;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       border-left: 3px solid var(--neon);
-      padding-left: 10px;
+      padding-left: 12px;
     }
     .card {
       background: var(--card-bg);
       border-radius: 18px;
-      padding: 24px;
+      padding: 28px;
       box-shadow: 0 12px 32px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.04);
       margin-bottom: 30px;
     }
     .profile {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 22px;
     }
     .avatar {
       width: 96px;
@@ -104,7 +111,8 @@
       width: 80px;
       height: 80px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(30, 215, 96, .7);
+      box-shadow: 0 0 25px rgba(30, 215, 96, .75);
+      animation: pulse 2s infinite alternate;
     }
     .spotify .track {
       display: flex;
@@ -120,12 +128,16 @@
       font-size: 0.95rem;
       color: var(--muted);
     }
+    @keyframes pulse {
+      from { box-shadow: 0 0 12px rgba(30,215,96,.5); }
+      to { box-shadow: 0 0 25px rgba(30,215,96,1); }
+    }
     .terminal {
       background: #03070f;
       border: 1px solid #1a2438;
       border-radius: 14px;
       padding: 14px;
-      margin-top: 20px;
+      margin-top: 24px;
       font-family: monospace;
       color: #74f57d;
       box-shadow: inset 0 0 12px rgba(0,255,150,.15);
@@ -155,7 +167,7 @@
 </head>
 <body>
   <header>
-    <div class="logo"><a href="/">KJS Info</a></div>
+    <div class="logo">KJS Info</div>
     <nav>
       <a href="/">Home</a>
       <a href="/about">About</a>
