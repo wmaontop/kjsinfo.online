@@ -232,7 +232,7 @@ function App() {
     />
   </a>
 
-  <a href="https://konect.gg/wma" target="_blank" rel="noopener noreferrer">
+  <a href="https://github.com/DevKj-InfiniteHosting" target="_blank" rel="noopener noreferrer">
     <img
       src="/assets/images/208930f3644c3d523e40657dc8ec638e-removebg-preview.png"
       alt="Konect 2"
