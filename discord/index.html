@@ -94,6 +94,32 @@
       color: var(--muted);
       font-size: 0.95rem;
     }
+    .spotify {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      gap: 16px;
+    }
+    .spotify img {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(30, 215, 96, .7);
+    }
+    .spotify .track {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .spotify .title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1ed760;
+    }
+    .spotify .artist {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
     .terminal {
       background: #03070f;
       border: 1px solid #1a2438;
@@ -152,6 +178,16 @@
         </div>
       </div>
 
+      <!-- Spotify Widget -->
+      <div id="spotify" class="spotify" style="display:none;">
+        <img id="spotify-album" src="" alt="Album Art">
+        <div class="track">
+          <div id="spotify-title" class="title"></div>
+          <div id="spotify-artist" class="artist"></div>
+        </div>
+      </div>
+
+      <!-- Terminal -->
       <div class="terminal">
         <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
         <pre id="terminal-output">$ fetch discord presence
@@ -185,19 +221,35 @@
         statusEl.textContent = d.discord_status.toUpperCase();
         statusEl.className = "status " + d.discord_status;
 
-        // Activity / Custom Status
+        // Custom Status / Activity
         let activityText = "";
         const custom = d.activities.find(a => a.type === 4);
         if (custom) activityText = custom.state;
-        else if (d.activities[0]) activityText = `${d.activities[0].name}`;
+        else if (d.activities[0] && d.activities[0].name !== "Spotify") activityText = `${d.activities[0].name}`;
         document.getElementById("activity").textContent = activityText;
 
-        // Terminal output
-        document.getElementById("terminal-output").textContent =
+        // Spotify Detection
+        const spotify = d.activities.find(a => a.type === 2 && a.name === "Spotify");
+        if (spotify) {
+          document.getElementById("spotify").style.display = "flex";
+          document.getElementById("spotify-album").src = spotify.assets.large_image.replace("spotify:", "https://i.scdn.co/image/");
+          document.getElementById("spotify-title").textContent = spotify.details;
+          document.getElementById("spotify-artist").textContent = spotify.state;
+        } else {
+          document.getElementById("spotify").style.display = "none";
+        }
+
+        // Terminal Output
+        let terminalOutput =
 `$ fetch discord presence
 👤 ${d.discord_user.username}#${d.discord_user.discriminator}
 📡 Status: ${d.discord_status}
 🎮 Activity: ${activityText || "None"}`;
+        if (spotify) {
+          terminalOutput += `\n🎵 Spotify: ${spotify.details} — ${spotify.state}`;
+        }
+        document.getElementById("terminal-output").textContent = terminalOutput;
+
       } catch (e) {
         console.error("Failed to load Discord status", e);
       }
