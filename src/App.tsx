@@ -9,10 +9,11 @@ function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const DISCORD_ID = '1405692760446599238';
+  const DISCORD_INVITE = 'https://discord.gg/v5kY4MK99d';
 
   useEffect(() => {
     if (showMain) {
-      fetch(`https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=1A1C1F&hideTag=true`)
+      fetch(`https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=0000&hideTag=true`)
         .then(response => {
           if (!response.ok) throw new Error('Network response was not ok');
           return response.json();
@@ -82,8 +83,6 @@ function App() {
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 animate-fade-in">
         <div className="text-center max-w-4xl">
           <div className="mb-8">
-            <div className="w-1 h-16 bg-white mx-auto mb-8 opacity-80"></div>
-
             <div className="flex justify-center mb-4">
               <img
                 src="/assets/images/pfp.png"
@@ -129,53 +128,43 @@ function App() {
                 {discordStatus.activities && discordStatus.activities.length > 0 && (
                   <span> | Activity: {discordStatus.activities[0].name}</span>
                 )}
+                <a
+                  href={DISCORD_INVITE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 ml-2 underline hover:text-blue-300"
+                >
+                  Join Discord
+                </a>
               </div>
             )}
 
             <div className="flex justify-center space-x-4 mt-4">
-              <img
-                src="/assets/images/leftwing.gif"
-                alt="Left Wing"
-                className="w-16 h-16"
-              />
-              <img
-                src="/assets/images/rightwing.gif"
-                alt="Right Wing"
-                className="w-16 h-16"
-              />
+              <a
+                href={DISCORD_INVITE}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/leftwing.gif"
+                  alt="Left Wing"
+                  className="w-12 h-12 transition-transform duration-300 hover:scale-110"
+                />
+              </a>
+              <a
+                href={DISCORD_INVITE}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/rightwing.gif"
+                  alt="Right Wing"
+                  className="w-12 h-12 transition-transform duration-300 hover:scale-110"
+                />
+              </a>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6 z-20">
-        <a
-          href="https://discord.gg/v5kY4MK99d"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block transition-transform duration-300 hover:scale-110 hover:brightness-110"
-        >
-          <img
-            src="/assets/images/rightwing.gif"
-            alt="Discord"
-            className="w-12 h-12 md:w-16 md:h-16 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-          />
-        </a>
-      </div>
-
-      <div className="fixed left-8 top-1/2 transform -translate-y-1/2 flex flex-col space-y-6 z-20">
-        <a
-          href="https://discord.gg/v5kY4MK99d"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block transition-transform duration-300 hover:scale-110 hover:brightness-110"
-        >
-          <img
-            src="/assets/images/leftwing.gif"
-            alt="Discord"
-            className="w-12 h-12 md:w-16 md:h-16 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-          />
-        </a>
       </div>
 
       <div className="fixed top-4 right-4 text-white text-sm opacity-60 z-20">
