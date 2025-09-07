@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KJS — Discord Status | kjsinfo.online</title>
+<meta name="theme-color" content="#0b0f17">
+<style>
+:root{
+  --bg:#06090f; --txt:#e6f1ff; --muted:#93a4bf;
+  --neon:#55ffcc; --neon-2:#66a6ff; --danger:#ff477e; --ok:#74f57d;
+  --card:#0a0f18cc; --radius:18px;
+  --shadow:0 10px 25px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+body{margin:0;font-family:Inter,monospace;background:var(--bg);color:var(--txt);}
+.wrap{max-width:900px;margin:0 auto;padding:24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--txt)}
+.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:conic-gradient(from 210deg,var(--neon),var(--neon-2),var(--danger),var(--neon))}
+.logo span{font-weight:800}
+nav a{color:var(--muted);text-decoration:none;margin-left:12px;padding:6px 10px;border-radius:999px;transition:.2s}
+nav a:hover{color:var(--txt);background:#0c1320}
+h2{margin-bottom:16px;font-size:28px;text-transform:uppercase;text-align:center;opacity:.9}
+.card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:24px}
+.card h3{margin-top:0}
+.status{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:16px}
+.status span{display:inline-block;width:12px;height:12px;border-radius:50%}
+.status.online span{background:var(--ok)}
+.status.offline span{background:var(--danger)}
+.terminal{background:#03070f;border:1px solid #1a2438;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-top:20px;text-align:left}
+.bar{display:flex;gap:8px;margin-bottom:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:#2a3550}
+.dot.r{background:#ff5f56}.dot.y{background:#ffbd2e}.dot.g{background:#27c93f}
+footer{margin:40px 0 12px;text-align:center;color:#8fa0bf;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="brand" href="index.html"><div class="logo"><span>∿</span></div>KJS</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<h2>Discord Status</h2>
+
+<div class="card">
+  <h3>Server Status</h3>
+  <div class="status online"><span></span> Online</div>
+  <p style="margin-top:8px;color:var(--muted)">Last checked: <span id="lastChecked"></span></p>
+  
+  <div class="terminal">
+    <div class="bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    </div>
+    <pre class="mono" id="terminalOutput" style="margin:0;white-space:pre-wrap;color:#74f57d;">
+$ ping discord.kjsinfo.online
+Reply from 104.16.xxx.xxx: bytes=32 time=21ms TTL=58
+✅ Discord server responding
+    </pre>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Latest Update</h3>
+  <p id="updateText">📝 Server launched v1.0 — Channels online.</p>
+</div>
+
+<footer>© <span id="year"></span> KJS — kjsinfo.online</footer>
+</div>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById('lastChecked').textContent=new Date().toLocaleString();
+  
+</script>
+</body>
+</html>
