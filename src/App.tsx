@@ -204,6 +204,14 @@ function App() {
                 <a href="https://t.me/wmaongunslol" target="_blank" rel="noopener noreferrer">
                   <img src="/assets/images/telegram.png" alt="Telegram" className="w-10 h-10 hover:scale-110 transition-transform" />
                 </a>
+                </button>
+                <a href="https://konect.gg/wma" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/images/b8e8bcf1f99a31dfd9acee872c250196-removebg-preview.png" alt="Telegram" className="w-10 h-10 hover:scale-110 transition-transform" />
+                </a>
+                </button>
+                <a href="https://konect.gg/wma" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/images/208930f3644c3d523e40657dc8ec638e-removebg-preview.png" alt="Telegram" className="w-10 h-10 hover:scale-110 transition-transform" />
+                </a>
               </div>
 
               <img
