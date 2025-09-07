@@ -97,7 +97,7 @@ function App() {
               <p>
                 Cybersecurity Pro, HTML, CSS, CPP, C#, JS, Python, Node JS,
                 TypeScript, Pterodactyl Panel, Degrees In Networking + Backend
-                Dev, Cybersecurity, Have Fun.
+                Dev, Cybersecurity, Have Fun. OWNER/Dev in P-Tools
               </p>
             </div>
 
