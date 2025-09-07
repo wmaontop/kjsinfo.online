@@ -5,29 +5,11 @@ function App() {
   const [showEnter, setShowEnter] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const [showMain, setShowMain] = useState(false);
-  const [discordStatus, setDiscordStatus] = useState<any>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const DISCORD_ID = '1405692760446599238';
   const DISCORD_INVITE = 'https://discord.gg/v5kY4MK99d';
-
-  useEffect(() => {
-    if (showMain) {
-      fetch(`https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=0000&hideTag=true`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.json();
-        })
-        .then(data => {
-          if (data.success) {
-            setDiscordStatus(data.data);
-          } else {
-            console.warn('No success in Discord status data:', data);
-          }
-        })
-        .catch(error => console.error('Error fetching Discord status:', error));
-    }
-  }, [showMain]);
+  const DISCORD_STATUS_IMG = `https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=0000&hideTag=true`;
 
   const handleEnter = () => {
     setFadeOut(true);
@@ -91,16 +73,24 @@ function App() {
               />
             </div>
 
-            <div className="flex items-center justify-center mb-6">
-              <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
+            <div className="flex flex-col items-center justify-center mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
                 wma
               </h1>
-              <img
-                src="/assets/images/gun.gif"
-                alt="Badge"
-                className="w-12 h-12 ml-4 cursor-pointer"
-                title="WMAONTOP"
-              />
+              <div className="flex space-x-4">
+                {[...Array(3)].map((_, idx) => (
+                  <div key={idx} className="relative group">
+                    <img
+                      src="/assets/images/gun.gif"
+                      alt="Badge"
+                      className="w-12 h-12 cursor-pointer"
+                    />
+                    <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                      WMAONTOP
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
@@ -122,40 +112,27 @@ function App() {
               </div>
             </div>
 
-            {discordStatus && (
-              <div className="text-white text-lg mb-4">
-                <span>Status: {discordStatus.discord_status}</span>
-                {discordStatus.activities && discordStatus.activities.length > 0 && (
-                  <span> | Activity: {discordStatus.activities[0].name}</span>
-                )}
-                <a
-                  href={DISCORD_INVITE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 ml-2 underline hover:text-blue-300"
-                >
-                  Join Discord
-                </a>
-              </div>
-            )}
+            {/* Embedded Lanyard Status */}
+            <div className="flex justify-center mb-6">
+              <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={DISCORD_STATUS_IMG}
+                  alt="Discord Status"
+                  className="rounded-xl shadow-lg"
+                />
+              </a>
+            </div>
 
+            {/* Wings under status */}
             <div className="flex justify-center space-x-4 mt-4">
-              <a
-                href={DISCORD_INVITE}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
                 <img
                   src="/assets/images/leftwing.gif"
                   alt="Left Wing"
                   className="w-12 h-12 transition-transform duration-300 hover:scale-110"
                 />
               </a>
-              <a
-                href={DISCORD_INVITE}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
                 <img
                   src="/assets/images/rightwing.gif"
                   alt="Right Wing"
