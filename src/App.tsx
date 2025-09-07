@@ -103,14 +103,14 @@ function App() {
               <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
                 wma
               </h1>
-              <div className="flex space-x-4">
+              <div className="flex space-x-3">
                 <div className="relative group">
                   <img
                     src="/assets/images/gun.gif"
                     alt="Gun Badge"
-                    className="w-12 h-12 cursor-pointer"
+                    className="w-8 h-8 cursor-pointer"
                   />
-                  <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 px-2 py-1 text-xs text-white bg-black bg-opacity-50 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                     WMA
                   </span>
                 </div>
@@ -118,9 +118,9 @@ function App() {
                   <img
                     src="/assets/images/gif.gif"
                     alt="Rich Badge"
-                    className="w-12 h-12 cursor-pointer"
+                    className="w-8 h-8 cursor-pointer"
                   />
-                  <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 px-2 py-1 text-xs text-white bg-black bg-opacity-50 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                     RICH
                   </span>
                 </div>
@@ -128,9 +128,9 @@ function App() {
                   <img
                     src="/assets/images/verified.png"
                     alt="Verified Badge"
-                    className="w-12 h-12 cursor-pointer"
+                    className="w-8 h-8 cursor-pointer"
                   />
-                  <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 px-2 py-1 text-xs text-white bg-black bg-opacity-50 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                     Verified
                   </span>
                 </div>
