@@ -38,7 +38,7 @@ function App() {
       >
         <div className="text-center">
           <h1 className="text-6xl md:text-8xl font-extrabold text-white mb-4 tracking-wider">
-            click to enter...
+            CLICK
           </h1>
         </div>
       </div>
