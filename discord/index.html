@@ -21,15 +21,20 @@
       flex-direction: column;
       min-height: 100vh;
     }
+
+    /* ==== NAV BAR (same as other pages) ==== */
     header {
       width: 100%;
       padding: 18px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header .logo {
       font-weight: 700;
@@ -41,13 +46,29 @@
     nav a {
       text-decoration: none;
       color: var(--fg);
-      margin-left: 20px;
+      margin-left: 24px;
       font-weight: 500;
-      transition: 0.2s;
+      transition: 0.25s;
+      position: relative;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--neon);
+      transition: 0.3s ease;
     }
     nav a:hover {
       color: var(--neon);
     }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ==== PAGE ==== */
     .wrap {
       flex: 1;
       max-width: 950px;
@@ -60,6 +81,7 @@
       border-left: 3px solid var(--neon);
       padding-left: 12px;
     }
+
     .card {
       background: var(--card-bg);
       border-radius: 18px;
@@ -67,6 +89,7 @@
       box-shadow: 0 12px 32px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.04);
       margin-bottom: 30px;
     }
+
     .profile {
       display: flex;
       align-items: center;
@@ -101,6 +124,8 @@
       color: var(--muted);
       font-size: 0.95rem;
     }
+
+    /* ==== SPOTIFY ==== */
     .spotify {
       display: flex;
       align-items: center;
@@ -132,6 +157,8 @@
       from { box-shadow: 0 0 12px rgba(30,215,96,.5); }
       to { box-shadow: 0 0 25px rgba(30,215,96,1); }
     }
+
+    /* ==== TERMINAL ==== */
     .terminal {
       background: #03070f;
       border: 1px solid #1a2438;
@@ -156,6 +183,26 @@
     .r { background: #ff5f56; }
     .y { background: #ffbd2e; }
     .g { background: #27c93f; }
+
+    /* ==== DISCORD BUTTON ==== */
+    .discord-btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 12px 22px;
+      background: var(--neon);
+      color: #000;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 0 16px var(--neon);
+      transition: 0.3s;
+    }
+    .discord-btn:hover {
+      background: #00ffaa;
+      box-shadow: 0 0 24px #00ffaa;
+      transform: translateY(-2px);
+    }
+
     footer {
       margin-top: auto;
       padding: 16px;
@@ -205,6 +252,9 @@
         <pre id="terminal-output">$ fetch discord presence
 ...waiting for update</pre>
       </div>
+
+      <!-- Join Button -->
+      <a class="discord-btn" href="https://discord.gg/YOURINVITECODE" target="_blank">Join My Discord</a>
     </div>
   </div>
 
