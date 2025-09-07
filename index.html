@@ -1,62 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WMA | kjsinfo.online</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: 'Poppins', sans-serif; }
-    .overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.98); z-index: 100; cursor: pointer; transition: opacity 0.7s ease; }
-    .overlay.hidden { opacity: 0; pointer-events: none; }
-    .glitch-text { text-shadow: 0px 0px 16.5px #fff; }
-  </style>
-</head>
-<body class="antialiased min-h-full">
-  <!-- Background Video -->
-  <video autoplay loop muted playsinline class="fixed inset-0 w-full h-full object-cover">
-    <source src="assets/video/gunslol.mp4" type="video/mp4" />
-  </video>
-  <div class="absolute inset-0 bg-black bg-opacity-40 backdrop-blur-sm"></div>
-
-  <!-- Overlay click to enter -->
-  <div id="overlay" class="overlay">
-    <div class="text-white text-2xl md:text-4xl">click...</div>
-  </div>
-
-  <!-- Profile Card -->
-  <div class="relative z-10 w-full max-w-xl mx-auto mt-10 bg-black bg-opacity-30 backdrop-blur-sm rounded-2xl p-6">
-    <div class="flex items-start gap-6">
-      <img src="https://cdn.cutz.lol/d896a470-b12e-495c-90bf-533a85c2ea13.gif" alt="avatar" class="w-28 h-28 rounded-2xl object-cover" />
-      <div class="flex-1 min-w-0">
-        <h1 class="text-2xl font-bold text-white glitch-text">wma</h1>
-        <p class="mt-2 text-base text-white opacity-80">
-          Cybersecurity Pro, HTML, CSS, CPP, C#, JS, Python, Node JS, TypeScript, Pterodactyl Panel.<br>
-          Degrees in Networking+ Backend Dev, Cybersecurity. Have Fun
-        </p>
-      </div>
-    </div>
-
-    <!-- Social Links -->
-    <div class="mt-6 flex flex-wrap gap-3 justify-center">
-      <a href="https://discord.com/users/1405692760446599238" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" class="w-8 h-8" /></a>
-      <a href="https://github.com/DevKj-InfiniteHosting" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" class="w-8 h-8" /></a>
-      <a href="https://namemc.com/profile/GalleryWashed" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" class="w-8 h-8" /></a>
-      <a href="https://kjsinfo.online" target="_blank"><img src="https://cdn.cutz.lol/5a17aa6f-d4f9-4219-a90d-dccdccf276eb.gif" class="w-8 h-8" /></a>
-      <a href="https://konect.gg/wma" target="_blank"><img src="https://cdn.cutz.lol/5ffd5167-00ba-4fdc-9cc2-d1200f5171c5.png" class="w-8 h-8" /></a>
-    </div>
-
-    <!-- Footer Info -->
-    <div class="mt-6 flex justify-between text-sm text-white opacity-80">
-      <span>📍 Ohio</span>
-      <span>💻 Cybersecurity</span>
-    </div>
-  </div>
-
-  <script>
-    document.getElementById('overlay').addEventListener('click', function() {
-      this.classList.add('hidden');
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>wma - Portfolio</title>
+    <meta name="description" content="Cybersecurity Professional & Full Stack Developer Portfolio" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
