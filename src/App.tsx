@@ -47,8 +47,8 @@ function App() {
 
   const copySpotify = async () => {
     try {
-      await navigator.clipboard.writeText("https://open.spotify.com/user/yourspotifyid");
-      alert("Spotify link copied!");
+      await navigator.clipboard.writeText("https://pornhub.com");
+      alert("no nigga die!");
     } catch (err) {
       console.error("Failed to copy:", err);
     }
