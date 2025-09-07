@@ -89,18 +89,6 @@ function App() {
                       WMA
                     </span>
                   </div>
-                    <div className="flex space-x-4">
-                {[...Array(3)].map((_, idx) => (
-                  <div key={idx} className="relative group">
-                    <img
-                      src="/assets/images/gif.gif"
-                      alt="Badge"
-                      className="w-12 h-12 cursor-pointer"
-                    />
-                    <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                      P-TOOLS
-                    </span>
-                  </div>
                 ))}
               </div>
             </div>
