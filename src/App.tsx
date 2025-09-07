@@ -86,7 +86,7 @@ function App() {
                       className="w-12 h-12 cursor-pointer"
                     />
                     <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                      WMAONTOP
+                      WMA
                     </span>
                   </div>
                 ))}
