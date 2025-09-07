@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WMA — Cybersecurity Pro | Multi-Page</title>
+  <meta name="theme-color" content="#0b0f17" />
+  <style>
+    :root{--bg:#06090f;--bg-2:#0b101a;--txt:#e6f1ff;--muted:#93a4bf;--neon:#55ffcc;--neon-2:#66a6ff;--accent:#12f7d6;--danger:#ff477e;--ok:#74f57d;--card:#0a0f18cc;--border:#192235;--shadow:0 10px 25px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);--radius:18px}
+    *{box-sizing:border-box}html,body{height:100%;margin:0;font:16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;color:var(--txt);background:var(--bg);overflow-x:hidden}
+    .bg{position:fixed;inset:0;z-index:-3;pointer-events:none;filter:saturate(1.05);background:radial-gradient(1200px 600px at 80% 10%, rgba(18,247,214,.10), transparent 50%), radial-gradient(900px 600px at 10% 20%, rgba(102,166,255,.10), transparent 50%), radial-gradient(800px 400px at 50% 80%, rgba(255,71,126,.08), transparent 60%), linear-gradient(180deg, #04060a 0%, #080d14 100%)}
+    .noise{position:fixed;inset:-200px;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".03"/></svg>');opacity:.6;mix-blend-mode:soft-light;z-index:-2;pointer-events:none;animation: drift 60s linear infinite}
+    .scan{position:fixed;inset:0;background:repeating-linear-gradient(180deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);opacity:.12;z-index:-2;pointer-events:none}
+    @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-200px,-200px,0)}}
+    .wrap{max-width:1100px;margin:0 auto;padding: clamp(18px, 3vw, 36px)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0;position:sticky;top:0;backdrop-filter: blur(8px);background: linear-gradient(180deg, rgba(8,13,20,.75), rgba(8,13,20,0));z-index:10}
+    .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--txt)}
+    .logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:conic-gradient(from 210deg, var(--neon), var(--neon-2), var(--danger), var(--neon));box-shadow:0 0 40px rgba(85,255,204,.25), inset 0 0 1px rgba(255,255,255,.5);position:relative;overflow:hidden}
+    .logo::after{content:"";position:absolute;inset:3px;border-radius:10px;background:#0b101a}
+    .logo span{position:relative;z-index:1;font-weight:800;letter-spacing:.5px}
+    nav{display:flex;gap:12px;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:999px;border:1px solid transparent;transition:.2s ease}
+    nav a:hover{color:var(--txt);border-color:#1b2840;background:#0c1320}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:40px 0 30px}
+    @media (max-width:920px){.hero{grid-template-columns:1fr}}
+    .title{font-size:clamp(34px,4.6vw,60px);line-height:1.05;font-weight:900;letter-spacing:.2px;margin:0 0 10px}
+    .glitch{position:relative;display:inline-block;text-shadow:0 0 18px rgba(85,255,204,.35)}
+    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;filter:blur(.5px) saturate(1.1)}
+    .glitch::before{transform: translate(1.5px,-1px);color:#66a6ff;opacity:.7}
+    .glitch::after{transform: translate(-1px,1.2px);color:#ff477e;opacity:.65}
+    .subtitle{color:var(--muted);margin-top:8px;font-size:clamp(16px,1.6vw,18px)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn{--glow: rgba(85,255,204,.45);position:relative;display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;color:var(--txt);text-decoration:none;background: linear-gradient(180deg, #0f1624, #0b101a);border:1px solid var(--border);box-shadow: var(--shadow);transition:.2s ease}
+    .btn:hover{transform: translateY(-1px);box-shadow:0 0 0 2px var(--glow),var(--shadow)}
+    .btn.ghost{background:transparent}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-top:16px}
+    .card h3{margin:2px 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;border:1px dashed #26324e;background:#0c1320;color:#9bb1da;font-size:12px;margin:4px}
+    footer{margin:40px 0 12px;color:#8fa0bf;font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="noise"></div>
+  <div class="scan"></div>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"><span>∿</span></div>
+        <div><strong>WMA</strong><small style="color:var(--muted)"> Cybersecurity  • Backend Dev</small></div>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/skills">Skills</a>
+        <a href="/work">Work</a>
+        <a href="/discord">Discord</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1 class="title">
+          <span class="glitch" data-text="Cybersecurity ">Cybersecurity Pro</span><br/>
+          <span class="glitch" data-text="& Backend Wizard">& Backend Wizard</span>
+        </h1>
+        <p class="subtitle">I harden systems, build fast backends, automate tasks. Fluent in <strong>HTML</strong>, <strong>CSS</strong>, <strong>C/C++</strong>, <strong>C#</strong>, <strong>JavaScript</strong>, <strong>TypeScript</strong>, <strong>Python</strong>, <strong>Node.js</strong>, and <strong>Pterodactyl Panel</strong>. Degrees in <strong>Networking+</strong>, <strong>Backend Dev</strong>, and <strong>Cybersecurity</strong>.</p>
+        <div class="cta">
+          <a class="btn" href="contact.html">⚡ Contact</a>
+          <a class="btn ghost" href="skills.html">🔒 View Capabilities</a>
+        </div>
+        <div style="margin-top:16px">
+          <span class="tag">Availability: <strong style="color:var(--ok)">Open</strong></span>
+          <span class="tag">Timezone: ET (UTC−4)</span>
+          <span class="tag">Response &lt;24h</span>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <pre style="margin:0;color:var(--ok)">$ whoami
+<strong>WMA</strong> — offensive/defensive security, backend, automation
+
+$ services
+• Security audits · Hardening · Incident response
+• API design · Microservices · Websockets · DB design
+• Game hosting @ scale with Pterodactyl
+
+$ motto
+"Ship secure. Ship fast."
+
+$ links
+• cutz.kjsinfo.online
+• guns.kjsinfo.online</pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>© <span id="year"></span> WMA — kjsinfo.online</footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
