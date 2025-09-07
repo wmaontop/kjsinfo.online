@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MapPin, Briefcase } from 'lucide-react';
+import { MapPin, Briefcase, Volume2, VolumeX } from 'lucide-react';
 
 function App() {
   const [showEnter, setShowEnter] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const [showMain, setShowMain] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(0.3);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const DISCORD_ID = '1405692760446599238';
-  const DISCORD_INVITE = 'https://discord.gg/v5kY4MK99d';
   const DISCORD_STATUS_IMG = `https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=0000&hideTag=true`;
 
   const handleEnter = () => {
@@ -24,9 +25,34 @@ function App() {
 
   useEffect(() => {
     if (showMain && videoRef.current) {
-      videoRef.current.volume = 0.3;
+      videoRef.current.volume = volume;
     }
-  }, [showMain]);
+  }, [showMain, volume]);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const newMuted = !isMuted;
+      setIsMuted(newMuted);
+      videoRef.current.muted = newMuted;
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume;
+    }
+  };
+
+  const copySpotify = async () => {
+    try {
+      await navigator.clipboard.writeText("https://open.spotify.com/user/yourspotifyid");
+      alert("Spotify link copied!");
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
 
   if (showEnter) {
     return (
@@ -112,42 +138,70 @@ function App() {
               </div>
             </div>
 
-            {/* Embedded Lanyard Status */}
             <div className="flex justify-center mb-6">
-              <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={DISCORD_STATUS_IMG}
-                  alt="Discord Status"
-                  className="rounded-xl shadow-lg"
-                />
-              </a>
+              <img
+                src={DISCORD_STATUS_IMG}
+                alt="Discord Status"
+                className="rounded-xl shadow-lg pointer-events-none"
+              />
             </div>
 
-            {/* Wings under status */}
-            <div className="flex justify-center space-x-4 mt-4">
-              <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
-                <img
-                  src="/assets/images/leftwing.gif"
-                  alt="Left Wing"
-                  className="w-12 h-12 transition-transform duration-300 hover:scale-110"
-                />
-              </a>
-              <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
-                <img
-                  src="/assets/images/rightwing.gif"
-                  alt="Right Wing"
-                  className="w-12 h-12 transition-transform duration-300 hover:scale-110"
-                />
-              </a>
+            <div className="flex justify-center items-center space-x-4 mt-4">
+              <img
+                src="/assets/images/leftwing.gif"
+                alt="Left Wing"
+                className="w-12 h-12 transition-transform duration-300 hover:scale-110"
+              />
+
+              <div className="flex space-x-4 items-center">
+                <a href="https://discord.gg/bSNU3HhVek" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/images/disc.png" alt="Discord 1" className="w-10 h-10 hover:scale-110 transition-transform" />
+                </a>
+                <a href="https://discord.gg/v5kY4MK99d" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/images/disc.png" alt="Discord 2" className="w-10 h-10 hover:scale-110 transition-transform" />
+                </a>
+                <button onClick={copySpotify}>
+                  <img src="/assets/images/spotify.png" alt="Spotify" className="w-10 h-10 hover:scale-110 transition-transform" />
+                </button>
+                <a href="https://t.me/wmaongunslol" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/images/telegram.png" alt="Telegram" className="w-10 h-10 hover:scale-110 transition-transform" />
+                </a>
+              </div>
+
+              <img
+                src="/assets/images/rightwing.gif"
+                alt="Right Wing"
+                className="w-12 h-12 transition-transform duration-300 hover:scale-110"
+              />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="fixed top-4 right-4 text-white text-sm opacity-60 z-20">
+      <div className="fixed top-4 left-4 text-white text-sm opacity-60 z-20">
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
           <span>online</span>
+        </div>
+      </div>
+
+      <div className="fixed top-4 right-4 z-30 group">
+        <div
+          className="bg-black bg-opacity-40 rounded-full p-2 cursor-pointer hover:bg-opacity-60 transition"
+          onClick={toggleMute}
+        >
+          {isMuted ? <VolumeX className="text-white" /> : <Volume2 className="text-white" />}
+        </div>
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity mt-2">
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value={volume}
+            onChange={handleVolumeChange}
+            className="w-24 cursor-pointer"
+          />
         </div>
       </div>
 
