@@ -12,11 +12,16 @@ function App() {
 
   useEffect(() => {
     if (showMain) {
-      fetch(`https://lanyard.cnrad.dev/api/1405692760446599238?bg=0000&hideTag=true)](https://discord.com/users/1405692760446599238`)
-        .then(response => response.json())
+      fetch(`https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=1A1C1F&hideTag=true`)
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json();
+        })
         .then(data => {
           if (data.success) {
             setDiscordStatus(data.data);
+          } else {
+            console.warn('No success in Discord status data:', data);
           }
         })
         .catch(error => console.error('Error fetching Discord status:', error));
@@ -79,12 +84,15 @@ function App() {
           <div className="mb-8">
             <div className="w-1 h-16 bg-white mx-auto mb-8 opacity-80"></div>
 
-            <div className="flex items-center justify-center mb-6">
+            <div className="flex justify-center mb-4">
               <img
                 src="/assets/images/pfp.png"
                 alt="wma Profile"
-                className="w-24 h-24 rounded-full mr-4"
+                className="w-32 h-32 rounded-full object-cover"
               />
+            </div>
+
+            <div className="flex items-center justify-center mb-6">
               <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
                 wma
               </h1>
@@ -104,7 +112,6 @@ function App() {
               </p>
             </div>
 
-            {/* Location and Work Info */}
             <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-8 text-gray-400 mb-12">
               <div className="flex items-center space-x-2">
                 <MapPin size={16} />
@@ -116,7 +123,6 @@ function App() {
               </div>
             </div>
 
-            {/* Discord Status */}
             {discordStatus && (
               <div className="text-white text-lg mb-4">
                 <span>Status: {discordStatus.discord_status}</span>
@@ -126,7 +132,6 @@ function App() {
               </div>
             )}
 
-            {/* Wings */}
             <div className="flex justify-center space-x-4 mt-4">
               <img
                 src="/assets/images/leftwing.gif"
@@ -134,7 +139,7 @@ function App() {
                 className="w-16 h-16"
               />
               <img
-                src="/public/assets/images/rightwing.gif"
+                src="/assets/images/rightwing.gif"
                 alt="Right Wing"
                 className="w-16 h-16"
               />
