@@ -1,57 +1,211 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>KJS Discord Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KJS | Discord Status</title>
   <style>
-    /* Your neon-terminal styling here */
-    body { background:#06090f; color:#e6f1ff; font-family:Inter, monospace; }
-    .profile { display:flex; align-items:center; gap:12px; padding:24px; backdrop-filter:blur(8px);}
-    .avatar { width:64px; height:64px; border-radius:50%; border:2px solid #55ffcc; }
-    .status { padding:4px 8px; border-radius:4px; text-transform:uppercase; font-size:0.9rem; }
-    .online { background:#74f57d; }
-    .idle { background:#ffbd2e; }
-    .dnd { background:#ff477e; }
-    .offline { background:#555; }
+    :root {
+      --bg: #06090f;
+      --fg: #e6f1ff;
+      --muted: #93a4bf;
+      --neon: #55ffcc;
+      --card-bg: rgba(10, 15, 25, 0.9);
+    }
+    body {
+      margin: 0;
+      font-family: "Inter", monospace;
+      background: var(--bg);
+      color: var(--fg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      width: 100%;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    header a {
+      text-decoration: none;
+      color: var(--fg);
+      margin-left: 18px;
+      transition: 0.2s;
+    }
+    header a:hover {
+      color: var(--neon);
+    }
+    .wrap {
+      max-width: 900px;
+      padding: 40px 20px;
+      flex: 1;
+      width: 100%;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--neon);
+      padding-left: 10px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.04);
+      margin-bottom: 30px;
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid var(--neon);
+      box-shadow: 0 0 12px var(--neon);
+    }
+    .username {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+    .status {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .online { background: #1dd75f; }
+    .idle { background: #ffbd2e; }
+    .dnd { background: #ff4d6d; }
+    .offline { background: #555; }
+    .activity {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .terminal {
+      background: #03070f;
+      border: 1px solid #1a2438;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 20px;
+      font-family: monospace;
+      color: #74f57d;
+      box-shadow: inset 0 0 12px rgba(0,255,150,.15);
+    }
+    .terminal .bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .r { background: #ff5f56; }
+    .y { background: #ffbd2e; }
+    .g { background: #27c93f; }
+    footer {
+      margin-top: auto;
+      padding: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo"><a href="/">KJS Info</a></div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/skills">Skills</a>
+      <a href="/work">Work</a>
+      <a href="/contact">Contact</a>
+      <a href="/discord">Discord</a>
+    </nav>
+  </header>
+
   <div class="wrap">
-    <header>…same nav as other pages…</header>
-    <h2>Discord Profile</h2>
-    <div id="kjs-discord" class="profile">
-      <img id="avatar" class="avatar" src="" alt="Avatar">
-      <div>
-        <div id="username" style="font-size:1.4rem; font-weight:600;"></div>
-        <div id="status" class="status">Loading...</div>
-        <div id="activity" style="margin-top:4px; color:#93a4bf;"></div>
+    <h2>Discord Presence</h2>
+    <div class="card">
+      <div class="profile">
+        <img id="avatar" class="avatar" src="" alt="Discord Avatar">
+        <div>
+          <div id="username" class="username">Loading...</div>
+          <div id="status" class="status offline">Loading</div>
+          <div id="activity" class="activity"></div>
+        </div>
+      </div>
+
+      <div class="terminal">
+        <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+        <pre id="terminal-output">$ fetch discord presence
+...waiting for update</pre>
       </div>
     </div>
-    <footer>© <span id="year"></span> KJS — kjsinfo.online</footer>
   </div>
+
+  <footer>
+    © <span id="year"></span> KJS — All Rights Reserved
+  </footer>
 
   <script>
     async function loadStatus() {
-      const res = await fetch('https://api.lanyard.rest/v1/users/YOUR_USER_ID');
-      const json = await res.json();
-      if (!json.success) return;
+      try {
+        const res = await fetch("https://api.lanyard.rest/v1/users/1405692760446599238");
+        const json = await res.json();
+        if (!json.success) return;
 
-      const d = json.data;
-      document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
-      document.getElementById('username').textContent =
-        `${d.discord_user.username}#${d.discord_user.discriminator}`;
+        const d = json.data;
+        // Avatar
+        document.getElementById("avatar").src =
+          `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png?size=256`;
 
-      const statusEl = document.getElementById('status');
-      statusEl.textContent = d.discord_status.replace(/_/g, ' ');
-      statusEl.className = 'status ' + d.discord_status;
+        // Username
+        document.getElementById("username").textContent =
+          `${d.discord_user.username}#${d.discord_user.discriminator}`;
 
-      const act = d.activities.find(a => a.type === 4 && a.name === 'Custom Status');
-      document.getElementById('activity').textContent = act ? act.state : '';
+        // Status
+        const statusEl = document.getElementById("status");
+        statusEl.textContent = d.discord_status.toUpperCase();
+        statusEl.className = "status " + d.discord_status;
+
+        // Activity / Custom Status
+        let activityText = "";
+        const custom = d.activities.find(a => a.type === 4);
+        if (custom) activityText = custom.state;
+        else if (d.activities[0]) activityText = `${d.activities[0].name}`;
+        document.getElementById("activity").textContent = activityText;
+
+        // Terminal output
+        document.getElementById("terminal-output").textContent =
+`$ fetch discord presence
+👤 ${d.discord_user.username}#${d.discord_user.discriminator}
+📡 Status: ${d.discord_status}
+🎮 Activity: ${activityText || "None"}`;
+      } catch (e) {
+        console.error("Failed to load Discord status", e);
+      }
     }
 
     loadStatus();
-    setInterval(loadStatus, 60000);
-    document.getElementById('year').textContent = new Date().getFullYear();
+    setInterval(loadStatus, 30000); // update every 30s
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
