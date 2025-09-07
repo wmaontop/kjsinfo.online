@@ -250,7 +250,18 @@ function App() {
         </div>
       </div>
 
-      <div className="fixed top-4 left-4 text-white text-sm opacity-60 z-20">
+      {/* Info button (top-left) */}
+      <div className="fixed top-4 left-4 z-30">
+        <a
+          href="/info.html"
+          className="bg-black bg-opacity-40 px-3 py-2 rounded-lg text-white text-sm font-medium hover:bg-opacity-70 transition"
+        >
+          Info
+        </a>
+      </div>
+
+      {/* Online indicator */}
+      <div className="fixed top-14 left-4 text-white text-sm opacity-60 z-20">
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
           <span>online</span>
