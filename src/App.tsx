@@ -191,29 +191,55 @@ function App() {
                 className="w-12 h-12 transition-transform duration-300 hover:scale-110"
               />
 
-              <div className="flex space-x-4 items-center">
-                <a href="https://discord.gg/bSNU3HhVek" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/images/disc.png" alt="Discord 1" className="w-10 h-10 hover:scale-110 transition-transform" />
-                </a>
-                <a href="https://discord.gg/v5kY4MK99d" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/images/disc.png" alt="Discord 2" className="w-10 h-10 hover:scale-110 transition-transform" />
-                </a>
-                <button onClick={copySpotify}>
-                  <img src="/assets/images/spotify.png" alt="Spotify" className="w-10 h-10 hover:scale-110 transition-transform" />
-                </button>
-                <a href="https://t.me/wmaongunslol" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/images/telegram.png" alt="Telegram" className="w-10 h-10 hover:scale-110 transition-transform" />
-                </a>
-                </button>
-                <a href="https://konect.gg/wma" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/images/b8e8bcf1f99a31dfd9acee872c250196-removebg-preview.png" alt="Telegram" className="w-10 h-10 hover:scale-110 transition-transform" />
-                </a>
-                </button>
-                <a href="https://konect.gg/wma" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/images/208930f3644c3d523e40657dc8ec638e-removebg-preview.png" alt="Telegram" className="w-10 h-10 hover:scale-110 transition-transform" />
-                </a>
-              </div>
+<div className="flex space-x-4 items-center">
+  <a href="https://discord.gg/bSNU3HhVek" target="_blank" rel="noopener noreferrer">
+    <img
+      src="/assets/images/disc.png"
+      alt="Discord 1"
+      className="w-10 h-10 hover:scale-110 transition-transform"
+    />
+  </a>
 
+  <a href="https://discord.gg/v5kY4MK99d" target="_blank" rel="noopener noreferrer">
+    <img
+      src="/assets/images/disc.png"
+      alt="Discord 2"
+      className="w-10 h-10 hover:scale-110 transition-transform"
+    />
+  </a>
+
+  <button onClick={copySpotify}>
+    <img
+      src="/assets/images/spotify.png"
+      alt="Spotify"
+      className="w-10 h-10 hover:scale-110 transition-transform"
+    />
+  </button>
+
+  <a href="https://t.me/wmaongunslol" target="_blank" rel="noopener noreferrer">
+    <img
+      src="/assets/images/telegram.png"
+      alt="Telegram"
+      className="w-10 h-10 hover:scale-110 transition-transform"
+    />
+  </a>
+
+  <a href="https://konect.gg/wma" target="_blank" rel="noopener noreferrer">
+    <img
+      src="/assets/images/b8e8bcf1f99a31dfd9acee872c250196-removebg-preview.png"
+      alt="Konect 1"
+      className="w-10 h-10 hover:scale-110 transition-transform"
+    />
+  </a>
+
+  <a href="https://konect.gg/wma" target="_blank" rel="noopener noreferrer">
+    <img
+      src="/assets/images/208930f3644c3d523e40657dc8ec638e-removebg-preview.png"
+      alt="Konect 2"
+      className="w-10 h-10 hover:scale-110 transition-transform"
+    />
+  </a>
+</div>
               <img
                 src="/assets/images/rightwing.gif"
                 alt="Right Wing"
