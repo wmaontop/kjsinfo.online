@@ -134,6 +134,16 @@ function App() {
                     Verified
                   </span>
                 </div>
+                <div className="relative group">
+                  <img
+                    src="/assets/images/premium.png"
+                    alt="Premium Badge"
+                    className="w-8 h-8 cursor-pointer"
+                  />
+                  <span className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 px-2 py-1 text-xs text-white bg-black bg-opacity-50 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    Premium
+                  </span>
+                </div>
               </div>
             </div>
 
