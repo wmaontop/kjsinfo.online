@@ -81,7 +81,7 @@ function App() {
 
             <div className="flex items-center justify-center mb-6">
               <img
-                src="/public/assets/images/pfp.png"
+                src="/assets/images/pfp.png"
                 alt="wma Profile"
                 className="w-24 h-24 rounded-full mr-4"
               />
@@ -89,7 +89,7 @@ function App() {
                 wma
               </h1>
               <img
-                src="/public/assets/images/gun.gif"
+                src="/assets/images/gun.gif"
                 alt="Badge"
                 className="w-12 h-12 ml-4 cursor-pointer"
                 title="WMAONTOP"
@@ -129,7 +129,7 @@ function App() {
             {/* Wings */}
             <div className="flex justify-center space-x-4 mt-4">
               <img
-                src="/public/assets/images/leftwing.gif"
+                src="/assets/images/leftwing.gif"
                 alt="Left Wing"
                 className="w-16 h-16"
               />
