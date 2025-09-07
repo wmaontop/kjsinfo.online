@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     if (showMain) {
-      fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`)
+      fetch(`https://lanyard.cnrad.dev/api/1405692760446599238?bg=0000&hideTag=true)](https://discord.com/users/1405692760446599238`)
         .then(response => response.json())
         .then(data => {
           if (data.success) {
