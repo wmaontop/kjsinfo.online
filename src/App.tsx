@@ -93,8 +93,8 @@ function App() {
 
   const copySpotify = async () => {
     try {
-      await navigator.clipboard.writeText("https://pornhub.com");
-      alert("no nigga die!");
+      await navigator.clipboard.writeText("https://open.spotify.com/user/2t9ikdd3z7c3fslt880low0mx?si=2ee584b890134e5c");
+      alert("no nigga die! - mrcool.lol check him out");
     } catch (err) {
       console.error("Failed to copy:", err);
     }
@@ -229,7 +229,7 @@ function App() {
 
             <div className="flex space-x-4 items-center">
               <a
-                href="https://discord.gg/bSNU3HhVek"
+                href="https://discord.gg/xzR2Wr9K7x"
                 target="_blank"
                 rel="noopener noreferrer"
               >
