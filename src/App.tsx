@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Briefcase, Volume2, VolumeX, ChevronDown } from "lucide-react";
+import {
+  MapPin,
+  Briefcase,
+  Volume2,
+  VolumeX,
+  ChevronDown,
+} from "lucide-react";
 
+// Dropdown menu (top-left)
 function InfoMenu() {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="fixed top-4 left-4 z-30">
-      {/* Info button */}
       <button
         onClick={() => setOpen(!open)}
         className="bg-black bg-opacity-40 px-3 py-2 rounded-lg text-white text-sm font-medium hover:bg-opacity-70 transition flex items-center gap-1"
@@ -17,7 +23,6 @@ function InfoMenu() {
         />
       </button>
 
-      {/* Dropdown menu */}
       {open && (
         <div className="mt-2 bg-black bg-opacity-80 rounded-lg shadow-lg p-2 space-y-1">
           <a
@@ -166,9 +171,139 @@ function App() {
         </div>
       </div>
 
-      {/* Main content (profile, links, etc.) */}
+      {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 animate-fade-in">
-        {/* ... your profile + badges + social links here ... */}
+        <div className="text-center max-w-4xl">
+          {/* Avatar */}
+          <div className="flex justify-center mb-4">
+            <img
+              src="/assets/images/pfp.png"
+              alt="wma Profile"
+              className="w-32 h-32 rounded-full object-cover"
+            />
+          </div>
+
+          {/* Name + Badges */}
+          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
+            wma
+          </h1>
+          {/* badges block goes here (your original code) */}
+
+          {/* Bio */}
+          <div className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p>
+              Cybersecurity Pro, HTML, CSS, CPP, C#, JS, Python, Node JS,
+              TypeScript, Pterodactyl Panel, Degrees In Networking + Backend
+              Dev, Cybersecurity, Have Fun. OWNER/Dev in P-Tools
+            </p>
+          </div>
+
+          {/* Location + Job */}
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-8 text-gray-400 mb-12">
+            <div className="flex items-center space-x-2">
+              <MapPin size={16} />
+              <span>Ohio</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Briefcase size={16} />
+              <span>Cybersecurity</span>
+            </div>
+          </div>
+
+          {/* Discord Status */}
+          <div className="flex justify-center mb-6">
+            <img
+              src={DISCORD_STATUS_IMG}
+              alt="Discord Status"
+              className="rounded-xl shadow-lg pointer-events-none"
+            />
+          </div>
+
+          {/* Socials row */}
+          <div className="flex justify-center items-center space-x-4 mt-4">
+            <img
+              src="/assets/images/leftwing.gif"
+              alt="Left Wing"
+              className="w-12 h-12 transition-transform duration-300 hover:scale-110"
+            />
+
+            <div className="flex space-x-4 items-center">
+              <a
+                href="https://discord.gg/bSNU3HhVek"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/disc.png"
+                  alt="Discord 1"
+                  className="w-10 h-10 hover:scale-110 transition-transform"
+                />
+              </a>
+
+              <a
+                href="https://discord.gg/v5kY4MK99d"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/disc.png"
+                  alt="Discord 2"
+                  className="w-10 h-10 hover:scale-110 transition-transform"
+                />
+              </a>
+
+              <button onClick={copySpotify}>
+                <img
+                  src="/assets/images/spotify.png"
+                  alt="Spotify"
+                  className="w-10 h-10 hover:scale-110 transition-transform"
+                />
+              </button>
+
+              <a
+                href="https://t.me/wmaongunslol"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/telegram.png"
+                  alt="Telegram"
+                  className="w-10 h-10 hover:scale-110 transition-transform"
+                />
+              </a>
+
+              <a
+                href="https://konect.gg/wma"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/b8e8bcf1f99a31dfd9acee872c250196-removebg-preview.png"
+                  alt="Konect 1"
+                  className="w-10 h-10 hover:scale-110 transition-transform"
+                />
+              </a>
+
+              <a
+                href="https://github.com/DevKj-InfiniteHosting"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/208930f3644c3d523e40657dc8ec638e-removebg-preview.png"
+                  alt="Konect 2"
+                  className="w-10 h-10 hover:scale-110 transition-transform"
+                />
+              </a>
+            </div>
+
+            <img
+              src="/assets/images/rightwing.gif"
+              alt="Right Wing"
+              className="w-12 h-12 transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Bottom fade line */}
