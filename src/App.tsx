@@ -55,7 +55,7 @@ function App() {
   const [volume, setVolume] = useState(0.3);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const DISCORD_ID = "1405692760446599238";
+  const DISCORD_ID = "1415042756409299155";
   const DISCORD_STATUS_IMG = `https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=0000&hideTag=true`;
 
   const handleEnter = () => {
