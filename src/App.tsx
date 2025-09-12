@@ -250,15 +250,50 @@ function App() {
         </div>
       </div>
 
-      {/* Info button (top-left) */}
-      <div className="fixed top-4 left-4 z-30">
-        <a
-          href="/info/info.html"
-          className="bg-black bg-opacity-40 px-3 py-2 rounded-lg text-white text-sm font-medium hover:bg-opacity-70 transition"
-        >
-          Info
-        </a>
-      </div>
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
+export default function InfoMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="fixed top-4 left-4 z-30">
+      {/* Info button */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="bg-black bg-opacity-40 px-3 py-2 rounded-lg text-white text-sm font-medium hover:bg-opacity-70 transition flex items-center gap-1"
+      >
+        Info
+        <ChevronDown
+          className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {/* Dropdown menu */}
+      {open && (
+        <div className="mt-2 bg-black bg-opacity-80 rounded-lg shadow-lg p-2 space-y-1">
+          <a
+            href="https://cutz.lol/cutz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-3 py-2 rounded-md text-white text-sm hover:bg-white hover:text-black transition"
+          >
+            cutz.lol/cutz
+          </a>
+          <a
+            href="https://guns.lol/wma"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-3 py-2 rounded-md text-white text-sm hover:bg-white hover:text-black transition"
+          >
+            guns.lol/wma
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
 
       {/* Online indicator */}
       <div className="fixed top-14 left-4 text-white text-sm opacity-60 z-20">
