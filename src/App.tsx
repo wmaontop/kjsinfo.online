@@ -5,6 +5,11 @@ import {
   Volume2,
   VolumeX,
   ChevronDown,
+  Github,
+  DiscIcon,
+  Send,
+  Music,
+  Link,
 } from "lucide-react";
 
 // Dropdown menu (top-left)
@@ -93,8 +98,10 @@ function App() {
 
   const copySpotify = async () => {
     try {
-      await navigator.clipboard.writeText("https://open.spotify.com/user/2t9ikdd3z7c3fslt880low0mx?si=2ee584b890134e5c");
-      alert("no nigga die! - mrcool.lol check him out");
+      await navigator.clipboard.writeText(
+        "https://open.spotify.com/user/2t9ikdd3z7c3fslt880low0mx?si=2ee584b890134e5c"
+      );
+      alert("Spotify profile copied!");
     } catch (err) {
       console.error("Failed to copy:", err);
     }
@@ -184,13 +191,12 @@ function App() {
           </div>
 
           {/* Name + Badges */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">
             wma
           </h1>
-          {/* badges block goes here (your original code) */}
 
           {/* Bio */}
-          <div className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
+          <div className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             <p>
               Cybersecurity Pro, HTML, CSS, CPP, C#, JS, Python, Node JS,
               TypeScript, Pterodactyl Panel, Degrees In Networking + Backend
@@ -219,89 +225,55 @@ function App() {
             />
           </div>
 
-          {/* Socials row */}
-          <div className="flex justify-center items-center space-x-4 mt-4">
+          {/* GitHub Stats */}
+          <div className="flex justify-center mb-10">
             <img
-              src="/assets/images/leftwing.gif"
-              alt="Left Wing"
-              className="w-12 h-12 transition-transform duration-300 hover:scale-110"
+              src="https://github-readme-stats.vercel.app/api?username=wmaontop&show_icons=true&theme=radical&hide_border=true"
+              alt="GitHub Stats"
+              className="rounded-xl shadow-lg"
             />
+          </div>
 
-            <div className="flex space-x-4 items-center">
-              <a
-                href="https://discord.gg/xzR2Wr9K7x"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/assets/images/disc.png"
-                  alt="Discord 1"
-                  className="w-10 h-10 hover:scale-110 transition-transform"
-                />
-              </a>
-
-              <a
-                href="https://discord.gg/v5kY4MK99d"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/assets/images/disc.png"
-                  alt="Discord 2"
-                  className="w-10 h-10 hover:scale-110 transition-transform"
-                />
-              </a>
-
-              <button onClick={copySpotify}>
-                <img
-                  src="/assets/images/spotify.png"
-                  alt="Spotify"
-                  className="w-10 h-10 hover:scale-110 transition-transform"
-                />
-              </button>
-
-              <a
-                href="https://t.me/wmaongunslol"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/assets/images/telegram.png"
-                  alt="Telegram"
-                  className="w-10 h-10 hover:scale-110 transition-transform"
-                />
-              </a>
-
-              <a
-                href="https://konect.gg/wma"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/assets/images/b8e8bcf1f99a31dfd9acee872c250196-removebg-preview.png"
-                  alt="Konect 1"
-                  className="w-10 h-10 hover:scale-110 transition-transform"
-                />
-              </a>
-
-              <a
-                href="https://github.com/DevKj-InfiniteHosting"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/assets/images/208930f3644c3d523e40657dc8ec638e-removebg-preview.png"
-                  alt="Konect 2"
-                  className="w-10 h-10 hover:scale-110 transition-transform"
-                />
-              </a>
-            </div>
-
-            <img
-              src="/assets/images/rightwing.gif"
-              alt="Right Wing"
-              className="w-12 h-12 transition-transform duration-300 hover:scale-110"
-            />
+          {/* Socials row (Professional Buttons) */}
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <a
+              href="https://github.com/wmaontop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-200 transition"
+            >
+              <Github size={18} /> GitHub
+            </a>
+            <a
+              href="https://discord.gg/xzR2Wr9K7x"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-indigo-700 transition"
+            >
+              <DiscIcon size={18} /> Discord
+            </a>
+            <a
+              href="https://t.me/wmaongunslol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-sky-500 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-sky-600 transition"
+            >
+              <Send size={18} /> Telegram
+            </a>
+            <button
+              onClick={copySpotify}
+              className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-green-600 transition"
+            >
+              <Music size={18} /> Spotify
+            </button>
+            <a
+              href="https://konect.gg/wma"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-gray-700 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-800 transition"
+            >
+              <Link size={18} /> Konect
+            </a>
           </div>
         </div>
       </div>
