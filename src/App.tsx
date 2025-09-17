@@ -225,7 +225,14 @@ function App() {
             />
           </div>
 
-{/* REPLACE HERE inputt */}
+{/* DStats Graph */}
+<div className="flex justify-center mb-6">
+  <iframe
+    src="https://dstat.cc/kjsinfo.online?theme=dark"
+    title="kjsinfo.online Stats"
+    className="w-full max-w-lg h-80 rounded-lg border-0"
+  ></iframe>
+</div>
 
 
 
