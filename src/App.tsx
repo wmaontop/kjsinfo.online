@@ -224,6 +224,13 @@ function App() {
               className="rounded-xl shadow-lg pointer-events-none"
             />
           </div>
+          <div className="flex justify-center mb-6">
+            <iframe
+              src="https://dstat.cc/kjsinfo.online?theme=dark&graphcolor=00BFFF"
+              title="Live Requests Graph"
+              className="w-full max-w-lg h-80 rounded-lg border-0 bg-blue-900"
+            ></iframe>
+          </div>
 
 {/* DStats Graph */}
 <div className="flex justify-center mb-6">
