@@ -225,41 +225,7 @@ function App() {
             />
           </div>
 
-{/* GitHub Section */}
-<div className="flex flex-col justify-center items-center gap-10 mb-10">
-
-  {/* Contribution Graph */}
-  <div className="flex justify-center mb-6">
-    <img
-      src={`https://ghchart.rshah.org/2ecc71/wmaontop`}
-      alt="wmaontop GitHub Contribution Graph"
-      className="rounded-xl shadow-lg max-w-full w-[600px] md:w-[800px] border border-gray-600"
-    />
-  </div>
-
-  {/* Stats + Top Languages */}
-  <div className="flex flex-col md:flex-row justify-center items-start gap-8">
-    {/* Stats card */}
-    <div className="text-center">
-      <p className="text-gray-400 text-sm mb-2">GitHub Stats</p>
-      <img
-        src="https://github-readme-stats.vercel.app/api?username=wmaontop&show_icons=true&theme=radical&hide_border=true&bg_color=00000000"
-        alt="GitHub Stats"
-        className="rounded-xl shadow-lg"
-      />
-    </div>
-    {/* Top Langs card */}
-    <div className="text-center">
-      <p className="text-gray-400 text-sm mb-2">Top Languages</p>
-      <img
-        src="https://github-readme-stats.vercel.app/api/top-langs/?username=wmaontop&layout=compact&theme=radical&hide_border=true&bg_color=00000000"
-        alt="Top Languages"
-        className="rounded-xl shadow-lg"
-      />
-    </div>
-  </div>
-
-</div>
+{/* REPLACE HERE inputt */}
 
 
 
