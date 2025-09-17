@@ -245,7 +245,7 @@ function App() {
               <Github size={18} /> GitHub
             </a>
             <a
-              href="https://discord.gg/xzR2Wr9K7x"
+              href="https://discord.gg/74HVz9sqGy"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-indigo-700 transition"
