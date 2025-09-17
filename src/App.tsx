@@ -225,22 +225,27 @@ function App() {
             />
           </div>
 
-          {/* GitHub Stats (Two Cards) */}
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-10">
-            {/* Main stats card */}
-            <img
-              src="https://github-readme-stats.vercel.app/api?username=wmaontop&show_icons=true&theme=radical&hide_border=true&bg_color=00000000"
-              alt="GitHub Stats"
-              className="rounded-xl shadow-lg"
-            />
+{/* GitHub Stats (Two Cards with Labels) */}
+<div className="flex flex-col md:flex-row justify-center items-center gap-10 mb-10">
+  <div className="text-center">
+    <p className="text-gray-400 text-sm mb-2">GitHub Stats</p>
+    <img
+      src="https://github-readme-stats.vercel.app/api?username=wmaontop&show_icons=true&theme=radical&hide_border=true&bg_color=00000000"
+      alt="GitHub Stats"
+      className="rounded-xl shadow-lg"
+    />
+  </div>
 
-            {/* Top languages card */}
-            <img
-              src="https://github-readme-stats.vercel.app/api/top-langs/?username=wmaontop&layout=compact&theme=radical&hide_border=true&bg_color=00000000"
-              alt="Top Languages"
-              className="rounded-xl shadow-lg"
-            />
-          </div>
+  <div className="text-center">
+    <p className="text-gray-400 text-sm mb-2">Top Languages</p>
+    <img
+      src="https://github-readme-stats.vercel.app/api/top-langs/?username=wmaontop&layout=compact&theme=radical&hide_border=true&bg_color=00000000"
+      alt="Top Languages"
+      className="rounded-xl shadow-lg"
+    />
+  </div>
+</div>
+
 
           {/* Socials row (Professional Buttons) */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
