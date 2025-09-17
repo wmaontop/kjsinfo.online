@@ -11,8 +11,8 @@ import {
   Music,
   Link,
 } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-// Dropdown menu (top-left)
 function InfoMenu() {
   const [open, setOpen] = useState(false);
 
@@ -48,6 +48,47 @@ function InfoMenu() {
           </a>
         </div>
       )}
+    </div>
+  );
+}
+
+function useLiveData() {
+  const [data, setData] = useState(
+    Array.from({ length: 20 }, (_, i) => ({
+      time: i,
+      requests: Math.floor(Math.random() * 100),
+    }))
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setData((prev) => {
+        const newPoint = {
+          time: prev.length,
+          requests: Math.floor(Math.random() * 100),
+        };
+        return [...prev.slice(-19), newPoint];
+      });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return data;
+}
+
+function LiveRequestsGraph() {
+  const data = useLiveData();
+  return (
+    <div className="flex flex-col items-center mb-6 bg-blue-900 rounded-xl p-4 w-full max-w-lg mx-auto shadow-lg">
+      <h2 className="text-white text-lg mb-2 font-semibold">kjsinfo.online Live Requests</h2>
+      <ResponsiveContainer width="100%" height={250}>
+        <LineChart data={data}>
+          <XAxis dataKey="time" stroke="#fff" />
+          <YAxis stroke="#fff" />
+          <Tooltip contentStyle={{ backgroundColor: "#1e3a8a", borderRadius: 8, border: "none" }} />
+          <Line type="monotone" dataKey="requests" stroke="#00BFFF" strokeWidth={2} dot={false} />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -128,7 +169,6 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      {/* Background video */}
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
@@ -142,10 +182,8 @@ function App() {
 
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-      {/* Info menu */}
       <InfoMenu />
 
-      {/* Online indicator */}
       <div className="fixed top-14 left-4 text-white text-sm opacity-60 z-20">
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -153,7 +191,6 @@ function App() {
         </div>
       </div>
 
-      {/* Volume controls */}
       <div className="fixed top-4 right-4 z-30 group">
         <div
           className="bg-black bg-opacity-40 rounded-full p-2 cursor-pointer hover:bg-opacity-60 transition"
@@ -178,10 +215,8 @@ function App() {
         </div>
       </div>
 
-      {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 animate-fade-in">
         <div className="text-center max-w-4xl">
-          {/* Avatar */}
           <div className="flex justify-center mb-4">
             <img
               src="/assets/images/pfp.png"
@@ -190,12 +225,10 @@ function App() {
             />
           </div>
 
-          {/* Name + Badges */}
           <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">
             wma
           </h1>
 
-          {/* Bio */}
           <div className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             <p>
               Cybersecurity Pro, HTML, CSS, CPP, C#, JS, Python, Node JS,
@@ -204,7 +237,6 @@ function App() {
             </p>
           </div>
 
-          {/* Location + Job */}
           <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-8 text-gray-400 mb-12">
             <div className="flex items-center space-x-2">
               <MapPin size={16} />
@@ -216,7 +248,6 @@ function App() {
             </div>
           </div>
 
-          {/* Discord Status */}
           <div className="flex justify-center mb-6">
             <img
               src={DISCORD_STATUS_IMG}
@@ -224,26 +255,9 @@ function App() {
               className="rounded-xl shadow-lg pointer-events-none"
             />
           </div>
-          <div className="flex justify-center mb-6">
-            <iframe
-              src="https://dstat.cc/kjsinfo.online?theme=dark&graphcolor=00BFFF"
-              title="Live Requests Graph"
-              className="w-full max-w-lg h-80 rounded-lg border-0 bg-blue-900"
-            ></iframe>
-          </div>
 
-{/* DStats Graph */}
-<div className="flex justify-center mb-6">
-  <iframe
-    src="https://dstat.cc/kjsinfo.online?theme=dark"
-    title="kjsinfo.online Stats"
-    className="w-full max-w-lg h-80 rounded-lg border-0"
-  ></iframe>
-</div>
+          <LiveRequestsGraph />
 
-
-
-          {/* Socials row (Professional Buttons) */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <a
               href="https://github.com/wmaontop"
@@ -287,7 +301,6 @@ function App() {
         </div>
       </div>
 
-      {/* Bottom fade line */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="w-16 h-1 bg-gradient-to-r from-transparent via-white to-transparent opacity-40"></div>
       </div>
