@@ -11,7 +11,6 @@ import {
   Music,
   Link,
 } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 function InfoMenu() {
   const [open, setOpen] = useState(false);
@@ -48,47 +47,6 @@ function InfoMenu() {
           </a>
         </div>
       )}
-    </div>
-  );
-}
-
-function useLiveData() {
-  const [data, setData] = useState(
-    Array.from({ length: 20 }, (_, i) => ({
-      time: i,
-      requests: Math.floor(Math.random() * 100),
-    }))
-  );
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setData((prev) => {
-        const newPoint = {
-          time: prev.length,
-          requests: Math.floor(Math.random() * 100),
-        };
-        return [...prev.slice(-19), newPoint];
-      });
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return data;
-}
-
-function LiveRequestsGraph() {
-  const data = useLiveData();
-  return (
-    <div className="flex flex-col items-center mb-6 bg-blue-900 rounded-xl p-4 w-full max-w-lg mx-auto shadow-lg">
-      <h2 className="text-white text-lg mb-2 font-semibold">kjsinfo.online Live Requests</h2>
-      <ResponsiveContainer width="100%" height={250}>
-        <LineChart data={data}>
-          <XAxis dataKey="time" stroke="#fff" />
-          <YAxis stroke="#fff" />
-          <Tooltip contentStyle={{ backgroundColor: "#1e3a8a", borderRadius: 8, border: "none" }} />
-          <Line type="monotone" dataKey="requests" stroke="#00BFFF" strokeWidth={2} dot={false} />
-        </LineChart>
-      </ResponsiveContainer>
     </div>
   );
 }
@@ -256,7 +214,13 @@ function App() {
             />
           </div>
 
-          <LiveRequestsGraph />
+          <div className="flex justify-center mb-6">
+            <iframe
+              src="https://dstat.one/kjsinfo.online?theme=dark&graphcolor=00BFFF"
+              title="DSTAT"
+              className="w-full max-w-lg h-80 rounded-lg border-0 bg-blue-900"
+            ></iframe>
+          </div>
 
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <a
