@@ -279,13 +279,23 @@ function App() {
             <DstatGraph />
           </div>
 
-          <div className="flex justify-center mb-10">
-            <img
-              src="https://github-readme-stats.vercel.app/api?username=wmaontop&show_icons=true&theme=radical&hide_border=true"
-              alt="GitHub Stats"
-              className="rounded-xl shadow-lg"
-            />
-          </div>
+{/* GitHub Stats */}
+<div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-10">
+  {/* Main stats card */}
+  <img
+    src="https://github-readme-stats.vercel.app/api?username=wmaontop&show_icons=true&theme=radical&hide_border=true&bg_color=00000000"
+    alt="GitHub Stats"
+    className="rounded-xl shadow-lg"
+  />
+
+  {/* Top languages card */}
+  <img
+    src="https://github-readme-stats.vercel.app/api/top-langs/?username=wmaontop&layout=compact&theme=radical&hide_border=true&bg_color=00000000"
+    alt="Top Languages"
+    className="rounded-xl shadow-lg"
+  />
+</div>
+
 
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <a
