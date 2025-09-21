@@ -30,14 +30,6 @@ function InfoMenu() {
       {open && (
         <div className="mt-2 bg-black bg-opacity-80 rounded-lg shadow-lg p-2 space-y-1">
           <a
-            href="https://cutz.lol/cutz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block px-3 py-2 rounded-md text-white text-sm hover:bg-white hover:text-black transition"
-          >
-            cutz.lol/cutz
-          </a>
-          <a
             href="https://guns.lol/wma"
             target="_blank"
             rel="noopener noreferrer"
