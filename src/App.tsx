@@ -181,9 +181,11 @@ function App() {
 
           <div className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             <p>
-              Cybersecurity Pro, HTML, CSS, CPP, C#, JS, Python, Node JS,
-              TypeScript, Pterodactyl Panel, Degrees In Networking + Backend
-              Dev, Cybersecurity, Have Fun. OWNER/Dev in P-Tools
+Cybersecurity Pro | Full-Stack & Backend Developer | Networking Expert
+Skilled in HTML, CSS, C++, C#, JavaScript, Python, Node.js, TypeScript, and Pterodactyl Panel.
+Holds degrees in Networking, Backend Development, and Cybersecurity.
+💻 Owner & Lead Developer of shotz.lol
+⚡ Passionate about building secure, scalable systems — and having fun while doing it.
             </p>
           </div>
 
