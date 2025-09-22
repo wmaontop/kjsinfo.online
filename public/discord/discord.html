@@ -135,7 +135,6 @@
         const json=await res.json(); if(!json.success) return;
         const d=json.data;
 
-        document.getElementById("avatar").src=`https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png?size=256`;
         document.getElementById("username").textContent=`${d.discord_user.username}#${d.discord_user.discriminator}`;
 
         const statusEl=document.getElementById("status");
