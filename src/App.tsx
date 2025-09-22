@@ -127,8 +127,6 @@ function App() {
     alt="Background"
     className="absolute inset-0 w-full h-full object-cover"
   />
-</div>
-
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
       <InfoMenu />
