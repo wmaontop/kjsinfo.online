@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react"; 
 import {
   MapPin,
   Briefcase,
@@ -49,10 +49,18 @@ function App() {
   const [showMain, setShowMain] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.3);
+  const [bioText, setBioText] = useState("");
+  const [scrollTopVisible, setScrollTopVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const DISCORD_ID = "1419122791596163142";
   const DISCORD_STATUS_IMG = `https://lanyard.cnrad.dev/api/${DISCORD_ID}?bg=0000&hideTag=true`;
+
+  const fullBio = `Cybersecurity Pro | Full-Stack & Backend Developer | Networking Expert
+Skilled in HTML, CSS, C++, C#, JavaScript, Python, Node.js, TypeScript, and Pterodactyl Panel.
+Holds degrees in Networking, Backend Development, and Cybersecurity.
+💻 Owner & Lead Developer of shotz.lol
+⚡ Passionate about building secure, scalable systems — and having fun while doing it.`;
 
   const handleEnter = () => {
     setFadeOut(true);
@@ -72,7 +80,26 @@ function App() {
       videoRef.current.muted = isMuted;
       videoRef.current.volume = volume;
     }
-  }, [showMain, isMuted, volume]);
+
+    // Typing animation
+    let i = 0;
+    const interval = setInterval(() => {
+      setBioText(fullBio.slice(0, i));
+      i++;
+      if (i > fullBio.length) clearInterval(interval);
+    }, 30);
+
+    // Scroll-to-top visibility
+    const handleScroll = () => {
+      setScrollTopVisible(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [showMain]);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -99,6 +126,10 @@ function App() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   if (showEnter) {
     return (
       <div
@@ -120,15 +151,15 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      {/* Background image */}
-      <img
-        src="/assets/images/c66faec7-800c-4beb-badd-9e73946050d2.png"
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+{/* Background image */}
+<img
+  src="/assets/images/c66faec7-800c-4beb-badd-9e73946050d2.png"
+  alt="Background"
+  className="absolute inset-0 w-full h-full object-cover"
+/>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+{/* Overlay */}
+<div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
       {/* Info menu */}
       <InfoMenu />
@@ -143,7 +174,6 @@ function App() {
 
       {/* Top-right buttons */}
       <div className="fixed top-4 right-4 z-30 flex flex-col items-end space-y-2">
-        {/* Info.html button */}
         <a
           href="/info/info.html"
           className="bg-black bg-opacity-40 rounded-full px-4 py-2 text-white text-sm font-medium hover:bg-opacity-60 transition"
@@ -151,7 +181,6 @@ function App() {
           Info Page
         </a>
 
-        {/* Sound control */}
         <div className="group">
           <div
             className="bg-black bg-opacity-40 rounded-full p-2 cursor-pointer hover:bg-opacity-60 transition"
@@ -175,7 +204,6 @@ function App() {
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 animate-fade-in">
-        {/* Profile */}
         <div className="flex justify-center mb-4">
           <img
             src="/assets/images/pfp.png"
@@ -188,21 +216,10 @@ function App() {
           wma
         </h1>
 
-        <div className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 max-w-2xl text-center">
-          <p>
-            Cybersecurity Pro | Full-Stack & Backend Developer | Networking Expert
-            <br />
-            Skilled in HTML, CSS, C++, C#, JavaScript, Python, Node.js, TypeScript, and Pterodactyl Panel.
-            <br />
-            Holds degrees in Networking, Backend Development, and Cybersecurity.
-            <br />
-            💻 Owner & Lead Developer of shotz.lol
-            <br />
-            ⚡ Passionate about building secure, scalable systems — and having fun while doing it.
-          </p>
+        <div className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 max-w-2xl text-center whitespace-pre-wrap">
+          {bioText}
         </div>
 
-        {/* Location & role */}
         <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-8 text-gray-400 mb-12">
           <div className="flex items-center space-x-2">
             <MapPin size={16} />
@@ -214,7 +231,6 @@ function App() {
           </div>
         </div>
 
-        {/* Discord status */}
         <div className="flex justify-center mb-6">
           <img
             src={DISCORD_STATUS_IMG}
@@ -223,13 +239,12 @@ function App() {
           />
         </div>
 
-        {/* Social buttons */}
         <div className="flex flex-wrap justify-center gap-4 mt-6">
           <a
             href="https://github.com/wmaontop"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-200 transition"
+            className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-200 hover:scale-105 transition-transform"
           >
             <Github size={18} /> GitHub
           </a>
@@ -237,7 +252,7 @@ function App() {
             href="https://discord.gg/74HVz9sqGy"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-indigo-700 transition"
+            className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-indigo-700 hover:scale-105 transition-transform"
           >
             <DiscIcon size={18} /> Discord
           </a>
@@ -245,13 +260,13 @@ function App() {
             href="https://t.me/wmaongunslol"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-sky-500 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-sky-600 transition"
+            className="flex items-center gap-2 bg-sky-500 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-sky-600 hover:scale-105 transition-transform"
           >
             <Send size={18} /> Telegram
           </a>
           <button
             onClick={copySpotify}
-            className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-green-600 transition"
+            className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-green-600 hover:scale-105 transition-transform"
           >
             <Music size={18} /> Spotify
           </button>
@@ -259,12 +274,22 @@ function App() {
             href="https://konect.gg/wma"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-gray-700 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-800 transition"
+            className="flex items-center gap-2 bg-gray-700 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-800 hover:scale-105 transition-transform"
           >
             <Link size={18} /> Konect
           </a>
         </div>
       </div>
+
+      {/* Scroll-to-top */}
+      {scrollTopVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-white text-black p-3 rounded-full shadow-lg hover:scale-110 transition-transform z-40"
+        >
+          ↑
+        </button>
+      )}
 
       {/* Bottom gradient */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20">
