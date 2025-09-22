@@ -123,7 +123,7 @@ function App() {
   return (
 <div className="relative min-h-screen bg-black overflow-hidden">
   <img
-    src="/assets/images/c66faec7-800c-4beb-badd-9e73946050d2.png"
+    src="/public/assets/images/c66faec7-800c-4beb-badd-9e73946050d2.png"
     alt="Background"
     className="absolute inset-0 w-full h-full object-cover"
   />
