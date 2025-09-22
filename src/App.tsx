@@ -123,20 +123,22 @@ function App() {
   return (
 <div className="relative min-h-screen bg-black overflow-hidden">
   <img
-    src="/public/assets/images/c66faec7-800c-4beb-badd-9e73946050d2.png"
+    src="/assets/images/c66faec7-800c-4beb-badd-9e73946050d2.png"
     alt="Background"
     className="absolute inset-0 w-full h-full object-cover"
   />
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-      <InfoMenu />
+  <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-      <div className="fixed top-14 left-4 text-white text-sm opacity-60 z-20">
-        <div className="flex items-center space-x-2">
-          <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-          <span>online</span>
-        </div>
-      </div>
+  <InfoMenu />
+
+  <div className="fixed top-14 left-4 text-white text-sm opacity-60 z-20">
+    <div className="flex items-center space-x-2">
+      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+      <span>online</span>
+    </div>
+  </div>
+</div>
 
       {/* Top-right buttons */}
       <div className="fixed top-4 right-4 z-30 flex flex-col items-end space-y-2">
