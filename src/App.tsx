@@ -60,6 +60,8 @@ function App() {
       setShowEnter(false);
       setShowMain(true);
       if (videoRef.current) {
+        videoRef.current.muted = isMuted;
+        videoRef.current.volume = volume;
         videoRef.current.play().catch(console.error);
       }
     }, 800);
@@ -67,9 +69,10 @@ function App() {
 
   useEffect(() => {
     if (showMain && videoRef.current) {
+      videoRef.current.muted = isMuted;
       videoRef.current.volume = volume;
     }
-  }, [showMain, volume]);
+  }, [showMain, isMuted, volume]);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -123,7 +126,6 @@ function App() {
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
-        muted={false}
         loop
         playsInline
       >
@@ -141,27 +143,39 @@ function App() {
         </div>
       </div>
 
-      <div className="fixed top-4 right-4 z-30 group">
-        <div
-          className="bg-black bg-opacity-40 rounded-full p-2 cursor-pointer hover:bg-opacity-60 transition"
-          onClick={toggleMute}
+      {/* Top-right buttons */}
+      <div className="fixed top-4 right-4 z-30 flex flex-col items-end space-y-2">
+        {/* Info.html button */}
+        <a
+          href="/info/info.html"
+          className="bg-black bg-opacity-40 rounded-full px-4 py-2 text-white text-sm font-medium hover:bg-opacity-60 transition"
         >
-          {isMuted ? (
-            <VolumeX className="text-white" />
-          ) : (
-            <Volume2 className="text-white" />
-          )}
-        </div>
-        <div className="opacity-0 group-hover:opacity-100 transition-opacity mt-2">
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.05"
-            value={volume}
-            onChange={handleVolumeChange}
-            className="w-24 cursor-pointer"
-          />
+          Info Page
+        </a>
+
+        {/* Sound control */}
+        <div className="group">
+          <div
+            className="bg-black bg-opacity-40 rounded-full p-2 cursor-pointer hover:bg-opacity-60 transition"
+            onClick={toggleMute}
+          >
+            {isMuted ? (
+              <VolumeX className="text-white" />
+            ) : (
+              <Volume2 className="text-white" />
+            )}
+          </div>
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity mt-2">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value={volume}
+              onChange={handleVolumeChange}
+              className="w-24 cursor-pointer"
+            />
+          </div>
         </div>
       </div>
 
@@ -206,14 +220,6 @@ Holds degrees in Networking, Backend Development, and Cybersecurity.
               alt="Discord Status"
               className="rounded-xl shadow-lg pointer-events-none"
             />
-          </div>
-
-          <div className="flex justify-center mb-6">
-            <iframe
-              src="https://dstat.one/kjsinfo.online?theme=dark&graphcolor=00BFFF"
-              title="DSTAT"
-              className="w-full max-w-lg h-80 rounded-lg border-0 bg-blue-900"
-            ></iframe>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 mt-6">
