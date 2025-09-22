@@ -121,16 +121,13 @@ function App() {
   if (!showMain) return null;
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        playsInline
-      >
-        <source src="/assets/video/gunslol.mp4" type="video/mp4" />
-      </video>
+<div className="relative min-h-screen bg-black overflow-hidden">
+  <img
+    src="/assets/images/c66faec7-800c-4beb-badd-9e73946050d2.png"
+    alt="Background"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+</div>
 
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
