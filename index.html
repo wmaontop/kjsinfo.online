@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>wma.lol</title>
+    <meta name="theme-color" content="#000001" />
+    <link rel="stylesheet" href="public/users/css/cat.css" />
+    <link rel="icon" href="public/src/img/1281904753252765717.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="public/src/img/1281904753252765717.png" type="image/x-icon" />
+    <meta content="follow me on ig @7irate !!" property="og:title" />
+    <meta content="http://wma.lol/" property="og:url" />
+    <meta content="https://i.imgur.com/y6XhCX6.jpeg" property="og:image" />
+    <meta content="#000001" data-react-helmet="true" name="theme-color" />
+</head>
+
+<script src="snow.js"></script>
+<script src="effects.js"></script>
+<script src="effects2.js"></script>
+<script src="view.js"></script>
+
+<body>
+<div id="overlay">
+    <button class="overlaybtn" onclick="removeOverlay()"> - </button>
+</div>
+
+<div id="user-page">
+    <!-- 🎥 Background Video -->
+    <video autoplay muted loop playsinline class="background" id="bgVideo">
+        <source src="./r2.wya.lol/banner.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="main-container" id="mainDiv">
+        <div class="profile-container">
+            <img class="pp" src="./r2.wya.lol/pp.png" draggable="false" />
+            <p class="username breathing" data-tooltip="uid: 0">WMA</p>
+
+            <div class="badges-container">
+                <div class="badges pic-badge" id="prem" data-tooltip="premium user"
+                     style="background-image: url('public/src/badges/premium.png');"></div>
+                <div class="badges pic-badge" id="own" data-tooltip="site owner"
+                     style="background-image: url('public/src/badges/booster.png');"></div>
+                <div class="badges pic-badge" id="early" data-tooltip="early user"
+                     style="background-image: url('public/src/badges/early.png');"></div>
+            </div>
+
+            <div class="bio-container">
+                <div class="bio typewriter"></div>
+            </div>
+
+            <div class="pre-container">
+                <div class="pre">
+                    <div class="cropped">
+                        <img draggable="false" id="rpc" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔗 Links -->
+            <div class="links-container" id="linksDiv">
+                <!-- Telegram -->
+                <div class="logo telegram" onclick="window.open('https://t.me/wma', '_blank');">
+                    <svg fill="#2aaaee" version="1.1" class="links" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                                d="M19.2,4.4L2.9,10.7c-1.1,0.4-1.1,1.1-0.2,1.3l4.1,1.3l1.6,4.8c0.2,0.5,0.1,0.7,0.6,0.7c0.4,0,0.6-0.2,0.8-0.4
+                  c0.1-0.1,1-1,2-2l4.2,3.1c0.8,0.4,1.3,0.2,1.5-0.7l2.8-13.1C20.6,4.6,19.9,4,19.2,4.4z M17.1,7.4l-7.8,7.1L9,17.8L7.4,13l9.2-5.8
+                  C17,6.9,17.4,7.1,17.1,7.4z"></path>
+                    </svg>
+                </div>
+
+                <!-- guns.lol link -->
+                <div class="logo link" onclick="window.open('https://guns.lol/wma', '_blank');">
+                    <img src="https://cdn-icons-png.flaticon.com/512/929/929564.png" class="links" alt="guns.lol" width="32" />
+                </div>
+
+                <!-- cops.bio link -->
+                <div class="logo link" onclick="window.open('https://cops.bio/!', '_blank');">
+                    <img src="https://cdn-icons-png.flaticon.com/512/929/929564.png" class="links" alt="cops.bio" width="32" />
+                </div>
+            </div>
+
+            <div class="linksline"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 🎧 Audio Controls (bottom of page) -->
+<div class="audio-controls">
+    <button id="toggleBtn" onclick="toggleAudio()">🎵 Music</button>
+    <button id="shuffleBtn" onclick="shuffleMusic()">🔀 Shuffle</button>
+    <select id="songSelector" onchange="selectSong(this.value)">
+        <option value="music.mp3">music.mp3</option>
+        <option value="music1.mp3">music1.mp3</option>
+        <option value="music2.mp3">music2.mp3</option>
+        <option value="music3.mp3">music3.mp3</option>
+        <option value="music4.mp3">music4.mp3</option>
+    </select>
+</div>
+
+<!-- 🎶 Music Player -->
+<audio id="musicAudio" loop></audio>
+
+<style>
+    /* 🎬 Video background styling */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      pointer-events: none; /* prevent clicks blocking page */
+      background: black;
+    }
+
+    .links-container .logo {
+      display: inline-block;
+      margin: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .links-container .logo:hover {
+      transform: scale(1.15);
+    }
+
+    /* 🎧 Audio Controls (bottom center) */
+    .audio-controls {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 10px 18px;
+      border-radius: 14px;
+      color: white;
+      font-family: monospace;
+      align-items: center;
+      z-index: 9999;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .audio-controls button,
+    .audio-controls select {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-family: monospace;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .audio-controls button:hover,
+    .audio-controls select:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+</style>
+
+<script>
+    const bgVideo = document.getElementById("bgVideo");
+    const musicAudio = document.getElementById("musicAudio");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const songSelector = document.getElementById("songSelector");
+
+    const musicList = [
+      "music.mp3",
+      "music1.mp3",
+      "music2.mp3",
+      "music3.mp3",
+      "music4.mp3"
+    ];
+
+    let currentMode = "video"; // Start in video mode
+    let currentSong = "music.mp3";
+
+    // Try to autoplay video muted
+    window.addEventListener("load", () => {
+      bgVideo.play().catch(() => console.warn("Autoplay blocked, waiting for user interaction."));
+    });
+
+    // Unmute video audio on first user interaction
+    document.body.addEventListener("click", () => {
+      if (currentMode === "video") bgVideo.muted = false;
+    }, { once: true });
+
+    function toggleAudio() {
+      if (currentMode === "video") {
+        bgVideo.muted = true;
+        musicAudio.src = "./r2.wya.lol/" + currentSong;
+        musicAudio.play();
+        currentMode = "music";
+        toggleBtn.textContent = "🎥 Video";
+      } else {
+        musicAudio.pause();
+        bgVideo.muted = false;
+        currentMode = "video";
+        toggleBtn.textContent = "🎵 Music";
+      }
+    }
+
+    function shuffleMusic() {
+      const randomSong = musicList[Math.floor(Math.random() * musicList.length)];
+      currentSong = randomSong;
+      songSelector.value = randomSong;
+      if (currentMode === "music") {
+        musicAudio.src = "./r2.wya.lol/" + currentSong;
+        musicAudio.play();
+      }
+    }
+
+    function selectSong(value) {
+      currentSong = value;
+      if (currentMode === "music") {
+        musicAudio.src = "./r2.wya.lol/" + currentSong;
+        musicAudio.play();
+      }
+    }
+</script>
+</body>
+</html>
