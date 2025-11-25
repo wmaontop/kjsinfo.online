@@ -1,62 +1,87 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel</title>
-<style>
-body { font-family: monospace; background: #111; color: #fff; padding: 20px; }
-h1 { color: #0f0; }
-table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-th, td { border: 1px solid #555; padding: 8px; text-align: left; }
-th { background: #222; }
-</style>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <style>
+    body { background:#0a0a0a; color:white; font-family: monospace; padding: 20px; }
+    h1 { text-align:center; }
+    .stats, .file-manager { background: rgba(255,255,255,0.05); padding:20px; border-radius:15px; margin-bottom:20px; }
+    button { padding:10px 15px; margin:5px; background:rgba(255,255,255,0.1); border:none; border-radius:8px; cursor:pointer; color:white; }
+    button:hover { background: rgba(255,255,255,0.25); }
+    input[type=file] { margin:10px 0; }
+    table { width:100%; border-collapse: collapse; margin-top:10px; }
+    th, td { padding:8px; border-bottom:1px solid rgba(255,255,255,0.2); text-align:left; }
+    th { background: rgba(255,255,255,0.05); }
+  </style>
 </head>
 <body>
 
 <h1>Admin Panel</h1>
-<p>Total Visitors: <span id="views">Loading...</span></p>
 
-<h2>Uploaded Files</h2>
-<table>
-<thead>
-<tr><th>Filename</th><th>Download</th></tr>
-</thead>
-<tbody id="filesTable">
-<tr><td colspan="2">Loading...</td></tr>
-</tbody>
-</table>
+<div class="stats">
+  <h2>Site Stats</h2>
+  <p id="visitorCount">Loading visitors...</p>
+  <p id="fileCount">Loading file count...</p>
+</div>
+
+<div class="file-manager">
+  <h2>File Manager</h2>
+  <input type="file" id="fileInput">
+  <button onclick="uploadFile()">Upload</button>
+  <table id="fileTable">
+    <tr><th>Filename</th><th>Action</th></tr>
+  </table>
+</div>
 
 <script>
-const token = localStorage.getItem("adminToken"); // Token set after login on index.html
+const backend = "https://wma-backend.onrender.com";
+const token = localStorage.getItem("adminToken");
+if(!token) window.location.href = "/";
 
-async function fetchStats() {
-    const res = await fetch("/api/stats", {
-        headers: { "Authorization": `Bearer ${token}` }
-    });
-    if(res.ok) {
-        const data = await res.json();
-        document.getElementById("views").textContent = data.views;
-
-        const table = document.getElementById("filesTable");
-        table.innerHTML = "";
-        if(data.files.length === 0) {
-            table.innerHTML = "<tr><td colspan='2'>No files uploaded</td></tr>";
-        } else {
-            data.files.forEach(file => {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `<td>${file}</td>
-                                <td><a href="/api/download/${encodeURIComponent(file)}" target="_blank">Download</a></td>`;
-                table.appendChild(tr);
-            });
-        }
-    } else {
-        document.getElementById("views").textContent = "Error fetching stats";
-    }
+async function loadStats() {
+  const res = await fetch(`${backend}/api/stats`, {
+    headers: { Authorization: "Bearer " + token }
+  });
+  if(res.status===403){ localStorage.removeItem("adminToken"); window.location.href="/"; }
+  const data = await res.json();
+  document.getElementById("visitorCount").innerText = "Visitors: " + data.views;
+  document.getElementById("fileCount").innerText = "Files: " + data.fileCount;
+  populateFiles(data.files);
 }
 
-fetchStats();
+function populateFiles(files) {
+  const table = document.getElementById("fileTable");
+  table.innerHTML = '<tr><th>Filename</th><th>Action</th></tr>';
+  files.forEach(f=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${f}</td><td><button onclick="downloadFile('${f}')">Download</button></td>`;
+    table.appendChild(tr);
+  });
+}
+
+async function uploadFile() {
+  const input = document.getElementById("fileInput");
+  if(input.files.length===0) return alert("Select a file!");
+  const file = input.files[0];
+  const form = new FormData();
+  form.append("file", file);
+
+  const res = await fetch(`${backend}/api/upload`, {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token },
+    body: form
+  });
+  const data = await res.json();
+  if(data.success) { alert("Uploaded!"); loadStats(); }
+  else alert("Upload failed");
+}
+
+function downloadFile(filename){
+  window.open(`${backend}/api/download/${filename}`, "_blank");
+}
+
+loadStats();
 </script>
 
 </body>
