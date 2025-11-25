@@ -1,116 +1,63 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Panel</title>
-  <style>
-    body { background:#0a0a0a; color:white; font-family: monospace; padding: 20px; }
-    h1 { text-align:center; }
-    .stats, .file-manager { background: rgba(255,255,255,0.05); padding:20px; border-radius:15px; margin-bottom:20px; }
-    button { padding:10px 15px; margin:5px; background:rgba(255,255,255,0.1); border:none; border-radius:8px; cursor:pointer; color:white; }
-    button:hover { background: rgba(255,255,255,0.25); }
-    input[type=file] { margin:10px 0; }
-    table { width:100%; border-collapse: collapse; margin-top:10px; }
-    th, td { padding:8px; border-bottom:1px solid rgba(255,255,255,0.2); text-align:left; }
-    th { background: rgba(255,255,255,0.05); }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Panel</title>
+<style>
+/* Admin Button */
+.admin-btn{position:fixed;right:20px;bottom:90px;padding:10px 18px;background:rgba(255,255,255,0.1);color:white;border:none;border-radius:10px;font-family:monospace;cursor:pointer;z-index:9999;transition:.2s;}
+.admin-btn:hover{background:rgba(255,255,255,0.25);}
+
+/* Modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:99999;justify-content:center;align-items:center;}
+.modal-content{background:rgba(0,0,0,0.85);padding:30px;width:320px;border-radius:15px;text-align:center;color:white;font-family:monospace;box-shadow:0 0 20px rgba(0,0,0,0.5);animation:pop .2s ease;}
+@keyframes pop{from{transform:scale(0.7);opacity:0;}to{transform:scale(1);opacity:1;}}
+.modal-content input{width:90%;padding:10px;margin-bottom:10px;border-radius:8px;border:none;outline:none;background:rgba(255,255,255,0.1);color:white;}
+.modal-content button{width:90%;padding:10px;margin-top:5px;background:rgba(255,255,255,0.15);border:none;border-radius:8px;color:white;cursor:pointer;transition:.2s;}
+.modal-content button:hover{background:rgba(255,255,255,0.3);}
+.close-btn{background:rgba(255,0,0,0.2);}
+.close-btn:hover{background:rgba(255,0,0,0.35);}
+.error{color:red;font-size:13px;margin-top:5px;} </style>
+
 </head>
 <body>
 
-<h1>Admin Panel</h1>
+<!-- Admin Modal -->
 
-<div class="stats">
-  <h2>Site Stats</h2>
-  <p id="visitorCount">Loading visitors...</p>
-  <p id="fileCount">Loading file count...</p>
+<div id="adminModal" class="modal">
+  <div class="modal-content">
+    <h2>Admin Login</h2>
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button onclick="adminLogin()">Login</button>
+    <button class="close-btn" onclick="closeAdminLogin()">Close</button>
+    <p id="adminError" class="error"></p>
+  </div>
 </div>
 
-<div class="file-manager">
-  <h2>File Manager</h2>
-  <input type="file" id="fileInput">
-  <button onclick="uploadFile()">Upload</button>
-  <table id="fileTable">
-    <tr><th>Filename</th><th>Action</th></tr>
-  </table>
-</div>
+<!-- Admin Button -->
+
+<button class="admin-btn" onclick="openAdminLogin()">Admin</button>
 
 <script>
-const backend = "https://wma-backend.onrender.com";
-const token = localStorage.getItem("adminToken");
-if(!token) window.location.href = "/";
-
-async function loadStats() {
-  const res = await fetch(`${backend}/api/stats`, {
-    headers: { Authorization: "Bearer " + token }
-  });
-  if(res.status===403){ localStorage.removeItem("adminToken"); window.location.href="/"; }
-  const data = await res.json();
-  document.getElementById("visitorCount").innerText = "Visitors: " + data.views;
-  document.getElementById("fileCount").innerText = "Files: " + data.fileCount;
-  populateFiles(data.files);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function openAdminLogin() {
+  document.getElementById("adminModal").style.display = "flex";
 }
-
-function populateFiles(files) {
-  const table = document.getElementById("fileTable");
-  table.innerHTML = '<tr><th>Filename</th><th>Action</th></tr>';
-  files.forEach(f=>{
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${f}</td><td><button onclick="downloadFile('${f}')">Download</button></td>`;
-    table.appendChild(tr);
-  });
+function closeAdminLogin() {
+  document.getElementById("adminModal").style.display = "none";
+  document.getElementById("adminPassword").value = "";
+  document.getElementById("adminError").textContent = "";
 }
-
-async function uploadFile() {
-  const input = document.getElementById("fileInput");
-  if(input.files.length===0) return alert("Select a file!");
-  const file = input.files[0];
-  const form = new FormData();
-  form.append("file", file);
-
-  const res = await fetch(`${backend}/api/upload`, {
-    method: "POST",
-    headers: { Authorization: "Bearer " + token },
-    body: form
-  });
-  const data = await res.json();
-  if(data.success) { alert("Uploaded!"); loadStats(); }
-  else alert("Upload failed");
+function adminLogin() {
+  const password = document.getElementById("adminPassword").value;
+  if(password === "adminpanel123") { // placeholder for frontend-only
+    alert("Admin login simulated (frontend only).");
+    closeAdminLogin();
+  } else {
+    document.getElementById("adminError").textContent = "Incorrect password.";
+  }
 }
-
-function downloadFile(filename){
-  window.open(`${backend}/api/download/${filename}`, "_blank");
-
-
-
-
-
-
-
-
-
-
-
-}
-
-loadStats();
-
 </script>
 
 </body>
