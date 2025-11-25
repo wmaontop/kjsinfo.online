@@ -1,86 +1,83 @@
-<!-- Admin Modal -->
-<div id="adminModal" class="modal">
-  <div class="modal-content">
-    <h2>Admin Login</h2>
-    <input type="password" id="adminPassword" placeholder="Password">
-    <button onclick="adminLogin()">Login</button>
-    <button class="close-btn" onclick="closeAdminLogin()">Close</button>
-    <p id="adminError" class="error"></p>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<style>
+body { font-family: monospace; background: #111; color: white; padding: 20px; }
+button { padding: 8px 12px; margin: 5px; cursor: pointer; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { padding: 8px; border: 1px solid #333; }
+th { background: #222; }
+</style>
+</head>
+<body>
 
-<!-- Admin Dashboard -->
-<div id="adminDashboard" style="display:none; padding:20px; color:white; font-family:monospace;">
-    <h2>Admin Dashboard</h2>
-    <p>👁️ Total Views: <span id="totalViews">0</span></p>
-    <p>📂 Uploaded Files: <span id="fileCount">0</span></p>
-    <ul id="fileList"></ul>
-</div>
+<h1>Admin Dashboard</h1>
+<p>Total Visitors: <span id="totalViews">0</span></p>
+<button onclick="fetchDashboard()">Refresh</button>
+<button onclick="resetVisitors()">Reset Visitors</button>
+
+<h2>Recent Visitors (last 50)</h2>
+<table>
+  <thead>
+    <tr>
+      <th>IP</th>
+      <th>Timestamp</th>
+      <th>User Agent</th>
+    </tr>
+  </thead>
+  <tbody id="visitorTable"></tbody>
+</table>
 
 <script>
-const backend = "https://wma-backend.onrender.com";
+const token = localStorage.getItem("adminToken"); // must be logged in
 
-// ---------------- Admin Login ----------------
-async function adminLogin() {
-    const password = document.getElementById("adminPassword").value;
+async function fetchDashboard() {
+    if (!token) return alert("Missing admin token");
 
     try {
-        const res = await fetch(`${backend}/api/login`, {
+        const res = await fetch("https://wma-backend.onrender.com/api/admin/dashboard", {
+            headers: { "Authorization": "Bearer " + token }
+        });
+        const data = await res.json();
+
+        if (!data.success) return alert("Error: " + data.error);
+
+        document.getElementById("totalViews").textContent = data.totalViews;
+
+        const tbody = document.getElementById("visitorTable");
+        tbody.innerHTML = "";
+        data.recentVisitors.forEach(v => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${v.ip}</td><td>${new Date(v.timestamp).toLocaleString()}</td><td>${v.userAgent}</td>`;
+            tbody.appendChild(tr);
+        });
+    } catch (err) {
+        alert("Failed to fetch dashboard");
+    }
+}
+
+async function resetVisitors() {
+    if (!token) return alert("Missing admin token");
+    if (!confirm("Reset all visitors?")) return;
+
+    try {
+        const res = await fetch("https://wma-backend.onrender.com/api/admin/reset", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ password })
+            headers: { "Authorization": "Bearer " + token }
         });
-
         const data = await res.json();
-
-        if(data.success) {
-            localStorage.setItem("adminToken", data.token);
-            alert("✅ Admin login successful!");
-            closeAdminLogin();
-            loadStats(); // load views/files after login
-            document.getElementById("adminDashboard").style.display = "block";
-        } else {
-            document.getElementById("adminError").textContent = "Incorrect password.";
-        }
+        if (!data.success) return alert("Error: " + data.error);
+        fetchDashboard();
     } catch (err) {
-        document.getElementById("adminError").textContent = "Error connecting to server.";
-        console.error(err);
+        alert("Failed to reset visitors");
     }
 }
 
-function closeAdminLogin() {
-    document.getElementById("adminModal").style.display = "none";
-    document.getElementById("adminPassword").value = "";
-    document.getElementById("adminError").textContent = "";
-}
-
-// ---------------- Load Stats ----------------
-async function loadStats() {
-    const token = localStorage.getItem("adminToken");
-    if(!token) return;
-
-    try {
-        const res = await fetch(`${backend}/api/stats`, {
-            headers: { "Authorization": `Bearer ${token}` }
-        });
-
-        const data = await res.json();
-
-        document.getElementById("totalViews").textContent = data.views;
-        document.getElementById("fileCount").textContent = data.fileCount;
-
-        const fileListEl = document.getElementById("fileList");
-        fileListEl.innerHTML = "";
-        data.files.forEach(file => {
-            const li = document.createElement("li");
-            li.textContent = file;
-            fileListEl.appendChild(li);
-        });
-    } catch (err) {
-        console.error("Error loading stats:", err);
-    }
-}
-
-// Optional: Auto-refresh stats every 10 seconds
-setInterval(loadStats, 10000);
+// initial fetch
+fetchDashboard();
 </script>
+
+</body>
+</html>
