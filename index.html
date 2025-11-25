@@ -37,66 +37,57 @@
 <!-- User Page -->
 
 <div id="user-page">
-    <!-- Background Video -->
     <video autoplay muted loop playsinline class="background" id="bgVideo">
         <source src="./r2.wya.lol/banner.mp4" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
 
-```
 <div class="main-container" id="mainDiv">
     <div class="profile-container">
         <img class="pp" src="./r2.wya.lol/pp.png" draggable="false" />
         <p class="username breathing" data-tooltip="uid: 0">WMA</p>
 
-        <!-- Badges -->
-        <div class="badges-container">
-            <div class="badges pic-badge" id="prem" data-tooltip="premium user"
-                 style="background-image: url('public/src/badges/premium.png');"></div>
-            <div class="badges pic-badge" id="own" data-tooltip="site owner"
-                 style="background-image: url('public/src/badges/booster.png');"></div>
-            <div class="badges pic-badge" id="early" data-tooltip="early user"
-                 style="background-image: url('public/src/badges/early.png');"></div>
-        </div>
-
-        <!-- Bio -->
-        <div class="bio-container">
-            <div class="bio typewriter"></div>
-        </div>
-
-        <!-- RPC Image -->
-        <div class="pre-container">
-            <div class="pre">
-                <div class="cropped">
-                    <img draggable="false" id="rpc" />
-                </div>
-            </div>
-        </div>
-
-        <!-- Links -->
-        <div class="links-container" id="linksDiv">
-            <div class="logo telegram" onclick="window.open('https://t.me/wma', '_blank');">
-                <svg fill="#2aaaee" version="1.1" class="links" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M19.2,4.4L2.9,10.7c-1.1,0.4-1.1,1.1-0.2,1.3l4.1,1.3l1.6,4.8c0.2,0.5,0.1,0.7,0.6,0.7c0.4,0,0.6-0.2,0.8-0.4
-                    c0.1-0.1,1-1,2-2l4.2,3.1c0.8,0.4,1.3,0.2,1.5-0.7l2.8-13.1C20.6,4.6,19.9,4,19.2,4.4z M17.1,7.4l-7.8,7.1L9,17.8L7.4,13l9.2-5.8
-                    C17,6.9,17.4,7.1,17.1,7.4z"></path>
-                </svg>
-            </div>
-
-            <div class="logo link" onclick="window.open('https://guns.lol/wma', '_blank');">
-                <img src="https://cdn-icons-png.flaticon.com/512/929/929564.png" class="links" alt="guns.lol" width="32" />
-            </div>
-
-            <div class="logo link" onclick="window.open('https://cops.bio/!', '_blank');">
-                <img src="https://cdn-icons-png.flaticon.com/512/929/929564.png" class="links" alt="cops.bio" width="32" />
-            </div>
-        </div>
-
-        <div class="linksline"></div>
+```
+    <!-- Badges -->
+    <div class="badges-container">
+        <div class="badges pic-badge" id="prem" data-tooltip="premium user" style="background-image: url('public/src/badges/premium.png');"></div>
+        <div class="badges pic-badge" id="own" data-tooltip="site owner" style="background-image: url('public/src/badges/booster.png');"></div>
+        <div class="badges pic-badge" id="early" data-tooltip="early user" style="background-image: url('public/src/badges/early.png');"></div>
     </div>
+
+    <!-- Bio -->
+    <div class="bio-container"><div class="bio typewriter"></div></div>
+
+    <!-- RPC Image -->
+    <div class="pre-container">
+        <div class="pre">
+            <div class="cropped">
+                <img draggable="false" id="rpc" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Links -->
+    <div class="links-container" id="linksDiv">
+        <div class="logo telegram" onclick="window.open('https://t.me/wma', '_blank');">
+            <svg fill="#2aaaee" version="1.1" class="links" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M19.2,4.4L2.9,10.7c-1.1,0.4-1.1,1.1-0.2,1.3l4.1,1.3l1.6,4.8c0.2,0.5,0.1,0.7,0.6,0.7c0.4,0,0.6-0.2,0.8-0.4
+                c0.1-0.1,1-1,2-2l4.2,3.1c0.8,0.4,1.3,0.2,1.5-0.7l2.8-13.1C20.6,4.6,19.9,4,19.2,4.4z M17.1,7.4l-7.8,7.1L9,17.8L7.4,13l9.2-5.8
+                C17,6.9,17.4,7.1,17.1,7.4z"></path>
+            </svg>
+        </div>
+        <div class="logo link" onclick="window.open('https://guns.lol/wma', '_blank');">
+            <img src="https://cdn-icons-png.flaticon.com/512/929/929564.png" class="links" alt="guns.lol" width="32" />
+        </div>
+        <div class="logo link" onclick="window.open('https://cops.bio/!', '_blank');">
+            <img src="https://cdn-icons-png.flaticon.com/512/929/929564.png" class="links" alt="cops.bio" width="32" />
+        </div>
+    </div>
+    <div class="linksline"></div>
 </div>
 ```
 
+</div>
 </div>
 
 <!-- Audio Controls -->
@@ -112,7 +103,6 @@
         <option value="music4.mp3">music4.mp3</option>
     </select>
 </div>
-
 <audio id="musicAudio" loop></audio>
 
 <!-- Scripts -->
@@ -126,7 +116,8 @@
 <script src="view.js"></script>
 
 <script>
-/* Admin modal */
+const backend = "https://wma-backend.onrender.com"; 
+
 function openAdminLogin() {
   document.getElementById("adminModal").style.display = "flex";
 }
@@ -135,13 +126,24 @@ function closeAdminLogin() {
   document.getElementById("adminPassword").value = "";
   document.getElementById("adminError").textContent = "";
 }
-function adminLogin() {
+async function adminLogin() {
   const password = document.getElementById("adminPassword").value;
-  if(password === "yourpassword") { // placeholder for frontend-only
-    alert("Admin login simulated (frontend only).");
-    closeAdminLogin();
-  } else {
-    document.getElementById("adminError").textContent = "Incorrect password.";
+  try {
+    const res = await fetch(`${backend}/api/login`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ password })
+    });
+    const data = await res.json();
+    if (!data.success) {
+      document.getElementById("adminError").textContent = "Incorrect password.";
+      return;
+    }
+    localStorage.setItem("adminToken", data.token);
+    window.location.href = "admin.html";
+  } catch (err) {
+    document.getElementById("adminError").textContent = "Server error.";
+    console.error(err);
   }
 }
 
@@ -155,11 +157,8 @@ const musicList = ["music.mp3","music1.mp3","music2.mp3","music3.mp3","music4.mp
 let currentMode = "video";
 let currentSong = "music.mp3";
 
-window.addEventListener("load", () => {
-  bgVideo.play().catch(()=>console.warn("Autoplay blocked"));
-});
-
-document.body.addEventListener("click",()=>{if(currentMode==="video") bgVideo.muted=false},{once:true});
+window.addEventListener("load", () => bgVideo.play().catch(()=>console.warn("Autoplay blocked")));
+document.body.addEventListener("click", ()=>{ if(currentMode==="video") bgVideo.muted=false }, {once:true});
 
 function toggleAudio() {
   if(currentMode==="video"){
@@ -196,11 +195,8 @@ function selectSong(value){
 <!-- Styles -->
 
 <style>
-/* Admin Button */
 .admin-btn{position:fixed;right:20px;bottom:90px;padding:10px 18px;background:rgba(255,255,255,0.1);color:white;border:none;border-radius:10px;font-family:monospace;cursor:pointer;z-index:9999;transition:.2s;}
 .admin-btn:hover{background:rgba(255,255,255,0.25);}
-
-/* Modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:99999;justify-content:center;align-items:center;}
 .modal-content{background:rgba(0,0,0,0.85);padding:30px;width:320px;border-radius:15px;text-align:center;color:white;font-family:monospace;box-shadow:0 0 20px rgba(0,0,0,0.5);animation:pop .2s ease;}
 @keyframes pop{from{transform:scale(0.7);opacity:0;}to{transform:scale(1);opacity:1;}}
@@ -210,15 +206,9 @@ function selectSong(value){
 .close-btn{background:rgba(255,0,0,0.2);}
 .close-btn:hover{background:rgba(255,0,0,0.35);}
 .error{color:red;font-size:13px;margin-top:5px;}
-
-/* Video Background */
 .background{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none;background:black;}
-
-/* Links */
 .links-container .logo{display:inline-block;margin:6px;cursor:pointer;transition:transform .2s ease;}
 .links-container .logo:hover{transform:scale(1.15);}
-
-/* Audio Controls */
 .audio-controls{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);display:flex;gap:12px;background:rgba(0,0,0,0.55);padding:10px 18px;border-radius:14px;color:white;font-family:monospace;align-items:center;z-index:9999;backdrop-filter:blur(6px);box-shadow:0 0 12px rgba(0,0,0,0.4);}
 .audio-controls button,.audio-controls select{background:rgba(255,255,255,0.1);border:none;color:white;font-family:monospace;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background .3s ease;}
 .audio-controls button:hover,.audio-controls select:hover{background:rgba(255,255,255,0.25);}
