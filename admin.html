@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -39,27 +40,34 @@ const backend = "https://wma-backend.onrender.com";
 const token = localStorage.getItem("adminToken");
 if(!token) window.location.href = "/";
 
+// Fetch site stats and files
 async function loadStats() {
-  const res = await fetch(`${backend}/api/stats`, {
-    headers: { Authorization: "Bearer " + token }
-  });
-  if(res.status===403){ localStorage.removeItem("adminToken"); window.location.href="/"; }
-  const data = await res.json();
-  document.getElementById("visitorCount").innerText = "Visitors: " + data.views;
-  document.getElementById("fileCount").innerText = "Files: " + data.fileCount;
-  populateFiles(data.files);
+  try {
+    const res = await fetch(`${backend}/api/stats`, {
+      headers: { Authorization: "Bearer " + token }
+    });
+    if(res.status===403){ localStorage.removeItem("adminToken"); window.location.href="/"; return; }
+    const data = await res.json();
+    document.getElementById("visitorCount").innerText = "Visitors: " + data.views;
+    document.getElementById("fileCount").innerText = "Files: " + data.fileCount;
+    populateFiles(data.files);
+  } catch(err) {
+    console.error("Error loading stats:", err);
+  }
 }
 
+// Populate files table
 function populateFiles(files) {
   const table = document.getElementById("fileTable");
   table.innerHTML = '<tr><th>Filename</th><th>Action</th></tr>';
-  files.forEach(f=>{
+  files.forEach(f => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${f}</td><td><button onclick="downloadFile('${f}')">Download</button></td>`;
+    tr.innerHTML = `<td>${f}</td><td><button onclick="downloadFile('${encodeURIComponent(f)}')">Download</button></td>`;
     table.appendChild(tr);
   });
 }
 
+// Upload file
 async function uploadFile() {
   const input = document.getElementById("fileInput");
   if(input.files.length===0) return alert("Select a file!");
@@ -67,21 +75,31 @@ async function uploadFile() {
   const form = new FormData();
   form.append("file", file);
 
-  const res = await fetch(`${backend}/api/upload`, {
-    method: "POST",
-    headers: { Authorization: "Bearer " + token },
-    body: form
-  });
-  const data = await res.json();
-  if(data.success) { alert("Uploaded!"); loadStats(); }
-  else alert("Upload failed");
+  try {
+    const res = await fetch(`${backend}/api/upload`, {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token },
+      body: form
+    });
+    const data = await res.json();
+    if(data.success) { alert("Uploaded!"); loadStats(); }
+    else alert("Upload failed");
+  } catch(err) {
+    console.error("Upload error:", err);
+    alert("Upload failed");
+  }
 }
 
+// Download file (no token required)
 function downloadFile(filename){
   window.open(`${backend}/api/download/${filename}`, "_blank");
 }
 
+// Initial load
 loadStats();
+
+// Optional: auto-refresh stats every 10 seconds
+setInterval(loadStats, 10000);
 </script>
 
 </body>
